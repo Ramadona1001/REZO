@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\rezo2\resources\views/partials/admin/menu/client_menu.blade.php ENDPATH**/ ?>
