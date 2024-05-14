@@ -38,7 +38,7 @@
 @section('action-btn')
     <div class="float-end">
         <a href="#" data-size="md" data-url="{{ route('stages.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create Deal Stage')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
     </div>
 @endsection
@@ -73,25 +73,21 @@
                                         @foreach ($pipeline['stages'] as $stage)
                                             <li class="d-flex align-items-center justify-content-between list-group-item" data-id="{{$stage->id}}">
                                                 <h6 class="mb-0">
-                                                    <i class="me-3 ti ti-arrows-maximize " data-feather="move"></i>
+                                                    <i class="me-3 fa fa-arrows-maximize " data-feather="move"></i>
                                                     <span>{{$stage->name}}</span>
                                                 </h6>
                                                 <span class="float-end">
 
                                                 @can('edit stage')
-                                                        <div class="action-btn bg-info ms-2">
-                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="{{ URL::to('stages/'.$stage->id.'/edit') }}" data-ajax-popup="true" data-size="md" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-title="{{__('Edit Deal Stages')}}">
-                                                            <i class="ti ti-pencil text-white"></i>
-                                                        </a>
-                                                    </div>
+                                                    <a href="#" class="mx-3 btn-primary btn btn-sm d-inline-flex align-items-center" data-url="{{ URL::to('stages/'.$stage->id.'/edit') }}" data-ajax-popup="true" data-size="md" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-title="{{__('Edit Deal Stages')}}">
+                                                        <i class="fa fa-pencil text-white"></i>
+                                                    </a>
                                                     @endcan
                                                     @if(count($pipeline['stages']))
                                                         @can('delete stage')
-                                                            <div class="action-btn bg-danger ms-2">
-                                                                {!! Form::open(['method' => 'DELETE', 'route' => ['stages.destroy', $stage->id]]) !!}
-                                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-                                                                {!! Form::close() !!}
-                                                            </div>
+                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['stages.destroy', $stage->id]]) !!}
+                                                        <a href="#" class="mx-3 btn-danger btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="fa fa-trash text-white"></i></a>
+                                                        {!! Form::close() !!}
                                                         @endcan
                                                     @endif
                                             </span>

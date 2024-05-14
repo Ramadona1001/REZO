@@ -1,18 +1,5 @@
 {{ Form::model($deal, array('route' => array('deals.update', $deal->id), 'method' => 'PUT')) }}
 <div class="modal-body">
-    {{-- start for ai module--}}
-    @php
-        $plan= \App\Models\Utility::getChatGPTSettings();
-    @endphp
-    @if($plan->chatgpt == 1)
-    <div class="text-end">
-        <a href="#" data-size="md" class="btn  btn-primary btn-icon btn-sm" data-ajax-popup-over="true" data-url="{{ route('generate',['deal']) }}"
-           data-bs-placement="top" data-title="{{ __('Generate content with AI') }}">
-            <i class="fas fa-robot"></i> <span>{{__('Generate with AI')}}</span>
-        </a>
-    </div>
-    @endif
-    {{-- end for ai module--}}
     <div class="row">
         <div class="col-6 form-group">
             {{ Form::label('name', __('Deal Name'),['class'=>'form-label']) }}
@@ -36,11 +23,7 @@
         </div>
         <div class="col-12 form-group">
             {{ Form::label('sources', __('Sources'),['class'=>'form-label']) }}
-            {{ Form::select('sources[]', $sources,null, array('class' => 'form-control select2','multiple'=>'','id'=>'choices-multiple3','required'=>'required')) }}
-        </div>
-        <div class="col-12 form-group">
-            {{ Form::label('products', __('Products'),['class'=>'form-label']) }}
-            {{ Form::select('products[]', $products,null, array('class' => 'form-control select2','multiple'=>'','id'=>'choices-multiple4','required'=>'required')) }}
+            {{ Form::select('sources[]', $sources,null, array('class' => 'form-control','multiple'=>'','id'=>'choices-multiple3','required'=>'required')) }}
         </div>
         <div class="col-12 form-group">
             {{ Form::label('notes', __('Notes'),['class'=>'form-label']) }}

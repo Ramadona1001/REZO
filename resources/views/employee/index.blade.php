@@ -125,8 +125,7 @@
                                             @can('show employee profile')
                                                 <a href="{{route('employee.show',\Illuminate\Support\Facades\Crypt::encrypt($employee->id))}}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="{{__('Details')}}" data-original-title="{{__('Details')}}"><i class="fa fa-eye text-white"></i></a>
                                             @endcan
-                                            @if($employee->is_active==1)
-                                                @can('edit employee')
+                                            @can('edit employee')
                                                     <a href="{{route('employee.edit',\Illuminate\Support\Facades\Crypt::encrypt($employee->id))}}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="{{__('Edit')}}"
                                                     data-original-title="{{__('Edit')}}"><i class="fa fa-pencil text-white"></i></a>
                                                 @endcan
@@ -136,10 +135,6 @@
                                                     <a href="#" class="btn btn-danger bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$employee->id}}').submit();"><i class="fa fa-trash text-white"></i></a>
                                                     {!! Form::close() !!}
                                                 @endcan
-                                            @else
-
-                                                <i class="fa fa-lock"></i>
-                                            @endif
                                         </td>
                                     @endif
                                 </tr>

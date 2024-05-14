@@ -53,6 +53,8 @@
     <meta property="twitter:title" content="<?php echo e($metatitle); ?>">
     <meta property="twitter:description" content="<?php echo e($metsdesc); ?>">
     <meta property="twitter:image" content="<?php echo e($meta_image . $meta_logo); ?>">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->

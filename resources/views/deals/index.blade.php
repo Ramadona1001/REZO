@@ -82,18 +82,8 @@
         {{ Form::select('default_pipeline_id', $pipelines,$pipeline->id, array('class' => 'form-control select me-4','id'=>'default_pipeline_id')) }}
         {{ Form::close() }}
 
-        <a href="{{ route('deals.list') }}" data-size="lg" data-bs-toggle="tooltip" title="{{__('List View')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-list"></i>
-        </a>
-        <a href="#" data-size="md"  data-bs-toggle="tooltip" title="{{__('Import')}}" data-url="{{ route('deals.file.import') }}" data-ajax-popup="true" data-title="{{__('Import Deal CSV file')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-file-import"></i>
-        </a>
-        <a href="{{route('deals.export')}}" data-bs-toggle="tooltip" title="{{__('Export')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-file-export"></i>
-        </a>
-
         <a href="#" data-size="lg" data-url="{{ route('deals.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Deal')}}" data-title="{{__('Create Deal')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
     </div>
 @endsection
@@ -111,7 +101,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="theme-avtar bg-info">
-                                <i class="ti ti-layers-difference"></i>
+                                <i class="fa fa-layers-difference"></i>
                             </div>
                         </div>
                     </div>
@@ -128,7 +118,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="theme-avtar bg-primary">
-                                <i class="ti ti-layers-difference"></i>
+                                <i class="fa fa-layers-difference"></i>
                             </div>
                         </div>
                     </div>
@@ -145,7 +135,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="theme-avtar bg-warning">
-                                <i class="ti ti-layers-difference"></i>
+                                <i class="fa fa-layers-difference"></i>
                             </div>
                         </div>
                     </div>
@@ -162,7 +152,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="theme-avtar bg-danger">
-                                <i class="ti ti-layers-difference"></i>
+                                <i class="fa fa-layers-difference"></i>
                             </div>
                         </div>
                     </div>
@@ -170,7 +160,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
         @php
                 $stages = $pipeline->stages;
                 $json = [];
@@ -178,10 +168,10 @@
                     $json[] = 'task-list-'.$stage->id;
                 }
             @endphp
-        <div class="row kanban-wrapper horizontal-scroll-cards" data-containers='{!! json_encode($json) !!}' data-plugin="dragula">
+        <div class="row kanban-wrapper horizontal-scroll-cards" style="row-gap: 20px" data-containers='{!! json_encode($json) !!}' data-plugin="dragula">
             @foreach($stages as $stage)
             @php($deals = $stage->deals())
-                <div class="col">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-header">
                             <div class="float-end">
@@ -193,81 +183,78 @@
                         </div>
                         <div class="card-body kanban-box" id="task-list-{{$stage->id}}" data-id="{{$stage->id}}">
                             @foreach($deals as $deal)
-                                <div class="card" data-id="{{$deal->id}}">
-                                    <div class="pt-3 ps-3">
-                                        @php($labels = $deal->labels())
-                                        @if($labels)
-                                            @foreach($labels as $label)
-                                                <div class="badge-xs badge bg-{{$label->color}} p-2 px-3 rounded">{{$label->name}}</div>
+                            <div class="card" data-id="{{ $deal->id }}" style="cursor: move;">
+                                <div class="card-body">
+                                    @php($labels = $deal->labels())
+                                    @if ($labels)
+                                        <span>{{ __('Labels') }}</span>
+                                        @foreach ($labels as $label)
+                                            <div class="badge-xs badge bg-{{ $label->color }} p-2 px-3 rounded">
+                                                {{ $label->name }}</div>
+                                        @endforeach
+                                    <hr>
+                                    @endif
+                                    <h5 class="text-center"><a href="@can('view lead')@if ($deal->is_active){{ route('leads.show', $deal->id) }}@else#@endif @else#@endcan">{{ $deal->name }}</a>
+                                    </h5>
+                                    @if (Auth::user()->type != 'client')
+                                        <div class="d-flex justify-content-center gap-2">
+                                            @can('edit lead')
+                                                <a href="#!" data-size="md"
+                                                    data-url="{{ URL::to('deals/' . $deal->id . '/labels') }}"
+                                                    data-ajax-popup="true" class="btn btn-sm btn-primary"
+                                                    data-bs-original-title="{{ __('Labels') }}">
+                                                    <i class="fa fa-bookmark"></i>
+                                                    <span>{{ __('Labels') }}</span>
+                                                </a>
+
+
+
+                                                <a href="#!" data-size="lg"
+                                                    data-url="{{ URL::to('deals/' . $deal->id . '/edit') }}"
+                                                    data-ajax-popup="true" class="btn btn-sm btn-primary"
+                                                    data-bs-original-title="{{ __('Edit Lead') }}">
+                                                    <i class="fa fa-pencil"></i>
+                                                    <span>{{ __('Edit') }}</span>
+                                                </a>
+                                            @endcan
+                                            @can('delete lead')
+                                                {!! Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['deals.destroy', $deal->id],
+                                                    'id' => 'delete-form-' . $deal->id,
+                                                ]) !!}
+                                                <a href="#!" class="btn btn-sm btn-danger bs-pass-para">
+                                                    <i class="fa fa-archive"></i>
+                                                    <span> {{ __('Delete') }} </span>
+                                                </a>
+                                                {!! Form::close() !!}
+                                            @endcan
+                                        </div>
+                                    @endif
+
+                                    <ul class="list-inline mb-0 d-flex justify-content-center gap-2 mt-2">
+                                        
+                                        <li class="list-inline-item d-inline-flex align-items-center btn btn-sm btn-info"
+                                            data-bs-toggle="tooltip" title="{{ __('Source') }}">
+                                            <i
+                                                class="f-16 text-white fa fa-list-check"></i>&nbsp;{{count($deal->tasks)}}/{{count($deal->complete_tasks)}}
+                                        </li>
+
+                                        <li class="list-inline-item d-inline-flex align-items-center btn btn-sm btn-info"
+                                            data-bs-toggle="tooltip" title="{{ __('Source') }}">
+                                            <i
+                                                class="f-16 text-white fa fa-share-nodes"></i>&nbsp;{{ count($deal->sources()) }}
+                                        </li>
+                                    </ul>
+                                    @if (count($deal->sources()) > 0)
+                                        <div class="d-flex justify-content-center gap-2 mt-2">
+                                            @foreach ($deal->sources() as $source)
+                                                <span style="background: #d8e9f9;padding:5px;border-radius:5px;color:#183a59;">{{ $source->name }}</span>
                                             @endforeach
-                                        @endif
-                                    </div>
-                                    <div class="card-header border-0 pb-0 position-relative">
-                                        <h5><a href="@can('view deal')@if($deal->is_active){{route('deals.show',$deal->id)}}@else#@endif @else#@endcan">{{$deal->name}}</a></h5>
-                                        <div class="card-header-right">
-                                            @if(Auth::user()->type != 'client')
-                                                <div class="btn-group card-option">
-                                                    <button type="button" class="btn dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        <i class="ti ti-dots-vertical"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        @can('edit deal')
-                                                            <a href="#!" data-size="md" data-url="{{ URL::to('deals/'.$deal->id.'/labels') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Labels')}}">
-                                                                <i class="ti ti-bookmark"></i>
-                                                                <span>{{__('Labels')}}</span>
-                                                            </a>
-                                                            <a href="#!" data-size="lg" data-url="{{ URL::to('deals/'.$deal->id.'/edit') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit Deal')}}">
-                                                                <i class="ti ti-pencil"></i>
-                                                                <span>{{__('Edit')}}</span>
-                                                            </a>
-                                                        @endcan
-                                                        @can('delete deal')
-                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['deals.destroy', $deal->id],'id'=>'delete-form-'.$deal->id]) !!}
-                                                                <a href="#!" class="dropdown-item bs-pass-para">
-                                                                    <i class="ti ti-archive"></i>
-                                                                    <span> {{__('Delete')}} </span>
-                                                                </a>
-                                                            {!! Form::close() !!}
-                                                        @endcan
-                                                    </div>
-                                                </div>
-                                            @endif
                                         </div>
-                                    </div>
-                                    <?php
-                                    $products = $deal->products();
-                                    $sources = $deal->sources();
-                                    ?>
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item d-inline-flex align-items-center" data-bs-toggle="tooltip" title="{{__('Tasks')}}">
-                                                    <i class="f-16 text-primary ti ti-list"></i> {{count($deal->tasks)}}/{{count($deal->complete_tasks)}}
-                                                </li>
-                                            </ul>
-                                            <div class="user-group">
-                                                <i class="text-primary ti ti-report-money"></i>  {{\Auth::user()->priceFormat($deal->price)}}
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item d-inline-flex align-items-center" data-bs-toggle="tooltip" title="{{__('Product')}}">
-                                                    <i class="f-16 text-primary ti ti-shopping-cart"></i> {{count($products)}}
-                                                </li>
-                                                <li class="list-inline-item d-inline-flex align-items-center" data-bs-toggle="tooltip" title="{{__('Source')}}">
-                                                    <i class="f-16 text-primary ti ti-social"></i>{{count($sources)}}
-                                                </li>
-                                            </ul>
-                                            <div class="user-group">
-                                                @foreach($deal->users as $user)
-                                                    <img src="@if($user->avatar) {{asset('/storage/uploads/avatar/'.$user->avatar)}} @else {{asset('storage/uploads/avatar/avatar.png')}} @endif"  data-bs-toggle="tooltip" title="{{$user->name}}">
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>

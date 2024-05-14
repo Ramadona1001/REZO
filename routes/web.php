@@ -24,6 +24,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BugStatusController;
 use App\Http\Controllers\CashfreeController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ChartOfAccountController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CoingatePaymentController;
@@ -1719,6 +1720,10 @@ Route::group(['middleware' => ['verified']], function () {
 
         }
     );
+
+
+    Route::get('/charts/employees', [ChartController::class, 'employees'])->name('charts.employees')->middleware(['XSS', 'revalidate']);
+    Route::get('/charts/projects', [ChartController::class, 'projects'])->name('charts.projects')->middleware(['XSS', 'revalidate']);
 
 });
 

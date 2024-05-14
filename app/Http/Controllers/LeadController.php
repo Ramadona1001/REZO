@@ -335,12 +335,11 @@ class LeadController extends Controller
                 $pipelines = Pipeline::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
                 $pipelines->prepend(__('Select Pipeline'), '');
                 $sources        = Source::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-                $products       = ProductService::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
                 $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
                 $lead->sources  = explode(',', $lead->sources);
                 $lead->products = explode(',', $lead->products);
 
-                return view('leads.edit', compact('lead', 'pipelines', 'sources', 'products', 'users'));
+                return view('leads.edit', compact('lead', 'pipelines', 'sources', 'users'));
             }
             else
             {
@@ -376,7 +375,6 @@ class LeadController extends Controller
                                        'user_id' => 'required',
                                        'stage_id' => 'required',
                                        'sources' => 'required',
-                                       'products' => 'required',
                                    ]
                 );
 
@@ -395,7 +393,7 @@ class LeadController extends Controller
                 $lead->pipeline_id = $request->pipeline_id;
                 $lead->stage_id    = $request->stage_id;
                 $lead->sources     = implode(",", array_filter($request->sources));
-                $lead->products    = implode(",", array_filter($request->products));
+                // $lead->products    = implode(",", array_filter($request->products));
                 $lead->notes       = $request->notes;
                 $lead->save();
 

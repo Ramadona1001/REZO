@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Exports\DealExport;
 use App\Imports\DealImport;
+use App\Models\Client;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DealController extends Controller
@@ -161,7 +162,7 @@ class DealController extends Controller
     {
         if(\Auth::user()->can('create deal'))
         {
-            $clients      = User::where('created_by', '=', \Auth::user()->ownerId())->where('type', 'client')->get()->pluck('name', 'id');
+            $clients      = Client::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
             $customFields = CustomField::where('module', '=', 'deal')->get();
 
             return view('deals.create', compact('clients', 'customFields'));
@@ -405,14 +406,13 @@ class DealController extends Controller
             {
                 $pipelines         = Pipeline::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
                 $sources           = Source::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
-                $products          = ProductService::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
                 $deal->customField = CustomField::getData($deal, 'deal');
                 $customFields      = CustomField::where('module', '=', 'deal')->get();
 
                 $deal->sources  = explode(',', $deal->sources);
                 $deal->products = explode(',', $deal->products);
 
-                return view('deals.edit', compact('deal', 'pipelines', 'sources', 'products', 'customFields'));
+                return view('deals.edit', compact('deal', 'pipelines', 'sources', 'customFields'));
             }
             else
             {

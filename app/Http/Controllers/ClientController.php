@@ -113,6 +113,7 @@ class ClientController extends Controller
                 'name' => $request->name,
                 'industry' => $request->industry,
                 'address' => $request->address,
+                'created_by'  => auth()->user()->id
             ]);
 
             for ($i=0; $i < count($request->contact_name); $i++) { 
