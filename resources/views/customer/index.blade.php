@@ -35,7 +35,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar/');
         </a>
 
         <a href="#" data-size="lg" data-url="{{ route('customer.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create Customer')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
     </div>
 @endsection

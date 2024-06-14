@@ -189,22 +189,7 @@
                 }
             });
         }
-        if ($('#cust-theme-bg').length > 0) {
-            var custthemebg = document.querySelector("#cust-theme-bg");
-            custthemebg.addEventListener("click", function() {
-                if (custthemebg.checked) {
-                    document.querySelector(".dash-sidebar").classList.add("transprent-bg");
-                    document
-                        .querySelector(".dash-header:not(.dash-mob-header)")
-                        .classList.add("transprent-bg");
-                } else {
-                    document.querySelector(".dash-sidebar").classList.remove("transprent-bg");
-                    document
-                        .querySelector(".dash-header:not(.dash-mob-header)")
-                        .classList.remove("transprent-bg");
-                }
-            });
-        }
+
     </script>
 
     <script>
@@ -4205,7 +4190,7 @@
                                                 data-ajax-popup="true" data-bs-toggle="tooltip"
                                                 title="{{ __('Create') }}" data-title="{{ __('Create New Webhook') }}"
                                                 class="btn btn-sm btn-primary">
-                                                <i class="ti ti-plus"></i>
+                                                <i class="fa fa-plus"></i>
                                             </a>
 
                                         </div>
@@ -4286,7 +4271,7 @@
                                             <a data-size="md" data-url="{{ route('create.ip') }}" data-ajax-popup="true"
                                                 data-bs-toggle="tooltip" title="{{ __('Create') }}"
                                                 data-title="{{ __('Create New IP') }}" class="btn btn-sm btn-primary">
-                                                <i class="ti ti-plus text-white"></i>
+                                                <i class="fa fa-plus text-white"></i>
                                             </a>
 
                                         </div>

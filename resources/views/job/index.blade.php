@@ -32,7 +32,7 @@
     <div class="float-end">
         @can('create job')
             <a href="{{ route('job.create') }}" class="btn btn-sm btn-primary"  data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create New Job')}}">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

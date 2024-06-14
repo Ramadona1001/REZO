@@ -330,22 +330,6 @@
             });
             });
         }
-        if ($('#cust-theme-bg').length > 0) {
-            var custthemebg = document.querySelector("#cust-theme-bg");
-            custthemebg.addEventListener("click", function() {
-                if (custthemebg.checked) {
-                    document.querySelector(".dash-sidebar").classList.add("transprent-bg");
-                    document
-                        .querySelector(".dash-header:not(.dash-mob-header)")
-                        .classList.add("transprent-bg");
-                } else {
-                    document.querySelector(".dash-sidebar").classList.remove("transprent-bg");
-                    document
-                        .querySelector(".dash-header:not(.dash-mob-header)")
-                        .classList.remove("transprent-bg");
-                }
-            });
-        }
     </script>
 
 

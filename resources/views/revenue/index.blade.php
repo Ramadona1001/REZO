@@ -16,7 +16,7 @@
 
         @can('create revenue')
             <a href="#" data-url="{{ route('revenue.create') }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Create New Revenue')}}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Create')}}">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
 

@@ -11,6 +11,7 @@ use App\Models\Bug;
 use App\Models\BugStatus;
 use App\Models\TaskStage;
 use App\Models\ActivityLog;
+use App\Models\ProjectEmployee;
 use App\Models\ProjectTask;
 use App\Models\TaskComment;
 use App\Models\TaskChecklist;
@@ -41,7 +42,7 @@ class ProjectTaskController extends Controller
                     $task->orderBy('order');
                     $status['tasks'] = $task->where('stage_id', '=', $status->id)->get();
                 }
-
+                
                 return view('project_task.index', compact('stages', 'stageClass', 'project'));
             } else {
                 return redirect()->route('projects.index')->with('error', __('Projeat not found'));
@@ -58,8 +59,8 @@ class ProjectTaskController extends Controller
             $project = Project::find($project_id);
             $hrs = Project::projectHrs($project_id);
             $settings = Utility::settings();
-
-            return view('project_task.create', compact('project_id', 'stage_id', 'project', 'hrs', 'settings'));
+            $employees_project = ProjectEmployee::where('project_id', $project_id)->get();
+            return view('project_task.create', compact('project_id', 'stage_id', 'project', 'hrs', 'settings','employees_project'));
         } else {
             return redirect()->back()->with('error', __('Permission Denied.'));
         }

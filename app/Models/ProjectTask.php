@@ -53,7 +53,7 @@ class ProjectTask extends Model
     
     public function users()
     {
-        return User::whereIn('id', explode(',', $this->assign_to))->get();
+        return Employee::whereIn('id', explode(',', $this->assign_to))->get();
     }
 
     // Task.php model

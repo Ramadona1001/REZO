@@ -34,7 +34,7 @@ $profile = asset(Storage::url('uploads/avatar/'));
         </a>
         @can('create vender')
             <a href="#" data-size="lg" data-url="{{ route('vender.create') }}" data-ajax-popup="true" data-title="{{__('Create New Vendor')}}" data-bs-toggle="tooltip" title="{{ __('Create') }}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
 

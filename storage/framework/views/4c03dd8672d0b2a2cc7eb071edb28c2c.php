@@ -30,8 +30,8 @@
 <script src="<?php echo e(asset('assets/js/plugins/feather.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/js/dash.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/js/dashmix.app.min.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/js/plugins/chart.js/chart.umd.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/js/pages/be_pages_dashboard.min.js')); ?>"></script>
+
+
 <script src="<?php echo e(asset('assets/js/plugins/simplebar.min.js')); ?>"></script>
 
 <script src="<?php echo e(asset('js/moment.min.js')); ?>"></script>
@@ -54,10 +54,8 @@
 <script src="<?php echo e(asset('assets/js/pages/be_tables_datatables.min.js')); ?>"></script>
 
 <!-- Apex Chart -->
-<script src="<?php echo e(asset('assets/js/plugins/apexcharts.min.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/js/plugins/main.min.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/js/plugins/choices.min.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/js/plugins/flatpickr.min.js')); ?>"></script>
+
+
 
 <script src="<?php echo e(asset('js/jscolor.js')); ?>"></script>
 
@@ -129,20 +127,7 @@
         });
     }
 
-    var custthemebg = document.querySelector("#cust-theme-bg");
-    custthemebg.addEventListener("click", function () {
-        if (custthemebg.checked) {
-            document.querySelector(".dash-sidebar").classList.add("transprent-bg");
-            document
-                .querySelector(".dash-header:not(.dash-mob-header)")
-                .classList.add("transprent-bg");
-        } else {
-            document.querySelector(".dash-sidebar").classList.remove("transprent-bg");
-            document
-                .querySelector(".dash-header:not(.dash-mob-header)")
-                .classList.remove("transprent-bg");
-        }
-    });
+ 
 
 
 

@@ -45,7 +45,7 @@ class ServiceController extends Controller
 
         if(\Auth::user()->can('manage service'))
         {
-            $productServices = Service::all();
+            $productServices = Service::where('created_by',auth()->user()->id)->get();
             return view('service.index', compact('productServices'));
         }
         else

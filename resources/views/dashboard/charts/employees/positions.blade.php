@@ -1,42 +1,104 @@
 @php
-    $employeeCounts = \App\Models\Employee::select('position_id',
-    \DB::raw('COUNT(position_id) as count')
-    )->groupBy('position_id')
-    ->where('position_id','!=','0')
-    ->whereNotNull('position_id')
-    ->where('created_by',\Auth::user()->creatorId())
+    $employeeCounts = \App\Models\Employee::select('positions.name as position_name',
+    \DB::raw('COUNT(employees.position_id) as count')
+    )->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+    ->where('employees.position_id', '!=', 0)
+    ->whereNotNull('employees.position_id')
+    ->where('employees.created_by', \Auth::user()->creatorId())
+    ->groupBy('employees.position_id', 'positions.name')
     ->get();
-
-    $dataArray = [["Position", "No. Employees"]];
-    foreach ($employeeCounts as $count) {
-        if ($count->position != null) {
-            $dataArray[] = [$count->position->name, $count->count];
-        }
-    }
-    $dataJson = json_encode($dataArray);
 @endphp
 
+<div class="card">
+    <div class="card-header">
+        {{ __('Employee Positions') }}
+    </div>
+    <div class="card-body">
+        <div id="positions"></div>
+    </div>
+</div>
 
-<div id="positions"></div>
-@push('css-page')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable({!! $dataJson !!});
-
-            var options = {
-                title: "{{ __('Employees Positions') }}"
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('positions'));
-
-            chart.draw(data, options);
+@push('script-page')
+<script type="text/javascript">
+    var employeeCounts = {!! $employeeCounts !!};
+    
+    var options = {
+        series: [{
+            name: 'Employee Count',
+            data: employeeCounts.map(item => item.count)
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 10,
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val;
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '12px',
+                colors: ["#304758"]
+            }
+        },
+        xaxis: {
+            categories: employeeCounts.map(item => item.position_name),
+            position: 'top',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            crosshairs: {
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        colorFrom: '#D8E3F0',
+                        colorTo: '#BED1E6',
+                        stops: [0, 100],
+                        opacityFrom: 0.4,
+                        opacityTo: 0.5,
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+            }
+        },
+        yaxis: {
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: false,
+            }
+        },
+        title: {
+            text: 'Employee Counts by Position',
+            floating: true,
+            offsetY: 330,
+            align: 'center',
+            style: {
+                color: '#444'
+            }
         }
-    </script>
+    };
+
+    var chart = new ApexCharts(document.querySelector("#positions"), options);
+    chart.render();
+</script>
+
 @endpush

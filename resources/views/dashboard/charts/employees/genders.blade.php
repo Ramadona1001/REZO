@@ -5,34 +5,54 @@
 )->groupBy('gender')
 ->where('created_by',\Auth::user()->creatorId())
 ->get();
-    $dataArray = [['Gender', 'No. Employees']];
-    foreach ($employeeCounts as $count) {
-        $dataArray[] = [$count->gender, $count->count];
-    }
-    $dataJson = json_encode($dataArray);
+
 @endphp
 
 
-<div id="genders"></div>
-@push('css-page')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable({!! $dataJson !!});
-
-            var options = {
-                title: "{{ __('Employees Genders') }}"
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('genders'));
-
-            chart.draw(data, options);
-        }
-    </script>
+<div class="card">
+    <div class="card-header">
+        {{ __('Employee Gender Chart') }}
+    </div>
+    <div class="card-body">
+        <div id="genderChart"></div>
+    </div>
+</div>
+@push('script-page')
+<script>
+    // Prepare data for charts
+    let genderData = {!! $employeeCounts->pluck('count', 'gender') !!}; // Prepare gender data
+    var genderChart = new ApexCharts(document.querySelector("#genderChart"), {
+        series: Object.values(genderData),
+        chart: {
+            type: 'pie',
+            height: 350,
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true,
+                    customIcons: []
+                },
+                autoSelected: 'zoom'
+            }
+        },
+        labels: Object.keys(genderData),
+        title: {
+            text: 'Employee Counts by Gender',
+            align: 'center',
+            margin: 20,
+            offsetY: 10,
+            style: {
+                fontSize: '16px',
+                color: '#333'
+            }
+        },
+    });
+    genderChart.render();
+</script>
 @endpush

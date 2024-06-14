@@ -425,7 +425,7 @@
                         <div class="col-md-12 d-flex align-items-center justify-content-between justify-content-md-end">
                             <div class="all-button-box me-2">
                                 <a href="#" data-repeater-create="" class="btn btn-primary" data-bs-toggle="modal" data-target="#add-bank">
-                                    <i class="ti ti-plus"></i> {{__('Add item')}}
+                                    <i class="fa fa-plus"></i> {{__('Add item')}}
                                 </a>
                             </div>
                         </div>

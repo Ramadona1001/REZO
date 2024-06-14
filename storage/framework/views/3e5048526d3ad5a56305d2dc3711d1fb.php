@@ -1,14 +1,6 @@
 <?php echo e(Form::open(array('url' => 'leads'))); ?>
 
 <div class="modal-body">
-    
-    <?php
-        $plan= \App\Models\Utility::getChatGPTSettings();
-    ?>
-    <?php if($plan->chatgpt == 1): ?>
-    
-    <?php endif; ?>
-    
     <div class="row">
         <div class="col-6 form-group">
             <?php echo e(Form::label('subject', __('Subject'),['class'=>'form-label'])); ?>

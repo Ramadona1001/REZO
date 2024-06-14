@@ -48,7 +48,17 @@
         <div>
             <h2 class="mb-3 f-w-600">{{ __('Register') }}</h2>
         </div>
+        @if ($get_plan != null)
+            <div style=" background: #0665d0; color: white; padding: 10px; border-radius: 5px; ">
+                <div>{{ __('Plan Name').' : '.$get_plan->name }}</div>
+                <div>{{ __('Price').' : ' }}{{ isset($admin_payment_setting['currency_symbol']) ? $admin_payment_setting['currency_symbol'] : '$' }}{{ intval($get_plan->price) }}</div>
+            </div>
+            <hr>
+        @endif
         <form method="POST" action="{{ route('register') }}">
+            @if ($get_plan != null)
+            <input type="hidden" name="plan_id" value="{{ $get_plan->id }}">
+            @endif
             @if (session('status'))
                 <div class="mb-4 font-medium text-lg text-green-600 text-danger">
                     {{ __('Email SMTP settings does not configured so please contact to your site admin.') }}

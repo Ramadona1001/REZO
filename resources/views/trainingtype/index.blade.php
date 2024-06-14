@@ -15,7 +15,7 @@
     <div class="float-end">
         @can('create training type')
             <a href="#" data-url="{{ route('trainingtype.create') }}" data-ajax-popup="true" data-title="{{__('Create New Training Type')}}" data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
 
         @endcan

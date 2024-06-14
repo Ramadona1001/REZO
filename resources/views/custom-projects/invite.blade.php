@@ -23,7 +23,7 @@
                                     <div class="action-btn bg-info ms-2 invite_usr" data-id="{{ $user->id }}">
                                         <button type="button" class="mx-3 btn btn-sm  align-items-center">
                                             <span class="btn-inner--visible">
-                                                <i class="ti ti-plus text-white" id="usr_icon_{{$user->id}}"></i>
+                                                <i class="fa fa-plus text-white" id="usr_icon_{{$user->id}}"></i>
                                             </span>
                                         </button>
                                     </div>

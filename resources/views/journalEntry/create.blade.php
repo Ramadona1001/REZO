@@ -191,7 +191,7 @@
                         <div class="col-md-12 d-flex align-items-center justify-content-between justify-content-md-end">
                             <a href="#" data-repeater-create="" class="btn btn-primary me-4" data-toggle="modal"
                                 data-target="#add-bank">
-                                <i class="ti ti-plus"></i> {{ __('Add Accounts') }}
+                                <i class="fa fa-plus"></i> {{ __('Add Accounts') }}
                             </a>
                         </div>
                     </div>

@@ -53,8 +53,8 @@ class CustomRequestController extends Controller
     {
         if(\Auth::user()->can('manage custom request'))
         {
-            $positions = Position::get()->pluck('name','id');
-            $units = Designation::all();
+            $positions = Position::where('created_by',auth()->user()->id)->get()->pluck('name','id');
+            $units = Designation::where('created_by',auth()->user()->id)->get();
             return view('custom_requests.index', compact('view','positions','units'));
         }
         else
@@ -72,8 +72,8 @@ class CustomRequestController extends Controller
     {
         if(\Auth::user()->can('create custom request'))
         {
-            $positions = Position::all();
-            $units = Designation::all();
+            $positions = Position::where('created_by',auth()->user()->id)->get();
+            $units = Designation::where('created_by',auth()->user()->id)->get();
             $projectId      = idFormat('custom_request',$this->positionNumber());
             return view('custom_requests.create', compact('units','positions','projectId'));
         }
@@ -127,8 +127,8 @@ class CustomRequestController extends Controller
         if(\Auth::user()->can('edit custom request'))
         {
           $custom_request = CustomRequest::findOrfail($custom->id);
-          $positions = Position::all();
-          $units = Designation::all();
+          $positions = Position::where('created_by',auth()->user()->id)->get();
+          $units = Designation::where('created_by',auth()->user()->id)->get();
           $projectId      = idFormat('custom_request',$this->positionNumber());
           if($custom_request->created_by == \Auth::user()->creatorId())
           {

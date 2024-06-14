@@ -3,6 +3,10 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startPush('css-page'); ?>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<?php $__env->stopPush(); ?>
+
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
     <li class="breadcrumb-item"><?php echo e($title); ?></li>

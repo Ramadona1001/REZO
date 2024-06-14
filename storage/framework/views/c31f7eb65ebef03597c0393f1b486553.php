@@ -5,10 +5,10 @@
     <?php echo $__env->make('dashboard.charts.employees.genders', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 <div class="col-6">
-    <?php echo $__env->make('dashboard.charts.employees.ages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('dashboard.charts.employees.positions', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 <div class="col-6">
-    <?php echo $__env->make('dashboard.charts.employees.positions', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('dashboard.charts.employees.ages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 <div class="col-6">
     <?php echo $__env->make('dashboard.charts.employees.departments', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

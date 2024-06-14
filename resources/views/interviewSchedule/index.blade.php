@@ -19,7 +19,7 @@
     <div class="float-end">
         @can('create interview schedule')
             <a href="#" data-url="{{ route('interview-schedule.create') }}" data-bs-toggle="tooltip" title="{{__('Create')}}" data-ajax-popup="true" data-title="{{__('Create New Interview Schedule')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

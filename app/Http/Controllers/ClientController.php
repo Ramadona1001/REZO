@@ -49,7 +49,7 @@ class ClientController extends Controller
         if(\Auth::user()->can('manage client'))
         {
             $user    = \Auth::user();
-            $clients = Client::all();
+            $clients = Client::where('created_by',auth()->user()->id)->get();
 
             return view('clients.index', compact('clients'));
         }

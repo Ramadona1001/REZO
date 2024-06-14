@@ -63,7 +63,7 @@
 {{--    <div class="float-end">--}}
 {{--        <a href="#" class="btn btn-sm btn-primary" data-ajax-popup="true"--}}
 {{--                   data-title="{{__('Create New Email Template')}}" title="{{__('Create')}}" data-url="{{route('email_template.create')}}">--}}
-{{--                    <i class="ti ti-plus"></i> </a>--}}
+{{--                    <i class="fa fa-plus"></i> </a>--}}
 {{--    </div>--}}
 
 {{--@endsection--}}

@@ -1,40 +1,61 @@
 <?php
-    $employeeCounts = \App\Models\Employee::select('department_id',
-    \DB::raw('COUNT(department_id) as count')
-    )->groupBy('department_id')
-    ->where('department_id','!=','0')
-    ->whereNotNull('department_id')
-    ->where('created_by',\Auth::user()->creatorId())
+    $employeeCounts = \App\Models\Employee::select('departments.name as department_name',
+    \DB::raw('COUNT(employees.department_id) as count')
+    )->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+    ->where('employees.department_id', '!=', 0)
+    ->whereNotNull('employees.department_id')
+    ->where('employees.created_by', \Auth::user()->creatorId())
+    ->groupBy('employees.department_id', 'departments.name')
     ->get();
-
-    $dataArray = [["Position", "No. Employees"]];
-    foreach ($employeeCounts as $count) {
-        $dataArray[] = [$count->department->name, $count->count];
-    }
-    $dataJson = json_encode($dataArray);
 ?>
 
+<div class="card">
+    <div class="card-header">
+        <?php echo e(__('Employee Departments')); ?>
 
-<div id="departments"></div>
-<?php $__env->startPush('css-page'); ?>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+    </div>
+    <div class="card-body">
+        <div id="departments"></div>
+    </div>
+</div>
 
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable(<?php echo $dataJson; ?>);
-
-            var options = {
-                title: "<?php echo e(__('Employees Departments')); ?>"
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('departments'));
-
-            chart.draw(data, options);
-        }
-    </script>
-<?php $__env->stopPush(); ?><?php /**PATH C:\xampp\htdocs\rezo2\resources\views/dashboard/charts/employees/departments.blade.php ENDPATH**/ ?>
+<?php $__env->startPush('script-page'); ?>
+<script>
+    // Prepare data for charts
+    let departmentData = <?php echo $employeeCounts->pluck('count', 'department_name'); ?>; // Prepare department data
+    var departmentChart = new ApexCharts(document.querySelector("#departments"), {
+        series: Object.values(departmentData),
+        chart: {
+            type: 'pie',
+            height: 350,
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true,
+                    customIcons: []
+                },
+                autoSelected: 'zoom'
+            }
+        },
+        labels: Object.keys(departmentData),
+        title: {
+            text: 'Employee Counts by Department',
+            align: 'center',
+            margin: 20,
+            offsetY: 10,
+            style: {
+                fontSize: '16px',
+                color: '#333'
+            }
+        },
+    });
+    departmentChart.render();
+</script>
+<?php $__env->stopPush(); ?>
+<?php /**PATH C:\xampp\htdocs\rezo2\resources\views/dashboard/charts/employees/departments.blade.php ENDPATH**/ ?>

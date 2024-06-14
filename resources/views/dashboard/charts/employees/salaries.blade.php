@@ -4,35 +4,84 @@
     $averageSalary = count($salaries) > 0 ? $sum_salaries / count($salaries) : 0;
 @endphp
 
+<div class="card">
+    <div class="card-header">
+        {{ __('Employee AVG Salaries') }}
+    </div>
+    <div class="card-body">
+        <div id="salaries"></div>
+    </div>
+</div>
 
-<div id="salaries"></div>
-@push('css-page')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawChart);
-    
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Category', 'Average Salary'],
-                ['Average Salary', {{ $averageSalary }}]
-            ]);
-    
-            var options = {
-                title: 'Average Salary',
-                chartArea: {width: '50%'},
-                hAxis: {
-                    title: 'Average Salary',
-                    minValue: 0
+
+@push('script-page')
+<script>
+    var averageSalary = {!! $averageSalary !!}; // Assuming $averageSalary is a numeric value
+
+    var options = {
+        series: [{
+            name: 'Average Salary',
+            data: [averageSalary]
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                    customIcons: []
                 },
-                vAxis: {
-                    title: 'Category'
+                autoSelected: 'zoom'
+            }
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val.toFixed(2); // Format salary to two decimal places
+            }
+        },
+        xaxis: {
+            categories: ['Average Salary'],
+            title: {
+                text: 'Average Salary'
+            },
+            labels: {
+                formatter: function (val) {
+                    return '$' + val.toFixed(2); // Format salary labels with dollar sign
                 }
-            };
-    
-            var chart = new google.visualization.BarChart(document.getElementById('salaries'));
-    
-            chart.draw(data, options);
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Category'
+            }
+        },
+        title: {
+            text: 'Average Salary',
+            align: 'center',
+            margin: 20,
+            offsetY: 10,
+            style: {
+                fontSize: '16px',
+                color: '#333'
+            }
         }
-    </script>
+    };
+
+    var chart = new ApexCharts(document.querySelector("#salaries"), options);
+    chart.render();
+</script>
+
 @endpush

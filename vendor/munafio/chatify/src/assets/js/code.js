@@ -571,7 +571,7 @@ channel.bind("client-seen", function(data) {
     if (data.seen == true) {
       $(".message-time")
         .find(".fa-check")
-        .before('<span class="ti ti-check-double seen"></span> ');
+        .before('<span class="fa fa-check-double seen"></span> ');
       $(".message-time")
         .find(".fa-check")
         .remove();
@@ -716,24 +716,6 @@ function checkInternet(state, selector) {
  * Get contacts
  *-------------------------------------------------------------
  */
-function getContacts() {
-  $(".listOfContacts").html(listItemLoading(4));
-  $.ajax({
-    url: url + "/getContacts",
-    method: "POST",
-    data: { _token: access_token, messenger_id: messenger.split("_")[1] },
-    dataType: "JSON",
-    success: (data) => {
-      $(".listOfContacts").html("");
-      $(".listOfContacts").html(data.contacts);
-      // update data-action required with [responsive design]
-      cssMediaQueries();
-    },
-    error: () => {
-      console.error("Server error, check your response");
-    },
-  });
-}
 
 /**
  *-------------------------------------------------------------
@@ -798,28 +780,7 @@ function star(user_id) {
  * Get favorite list
  *-------------------------------------------------------------
  */
-function getFavoritesList() {
-  $(".messenger-favorites").html(avatarLoading(4));
-  $.ajax({
-    url: url + "/favorites",
-    method: "POST",
-    data: { _token: access_token },
-    dataType: "JSON",
-    success: (data) => {
-      if (data.count > 0) {
-        $(".favorites-section").show();
-        $(".messenger-favorites").html(data.favorites);
-      } else {
-        $(".favorites-section").hide();
-      }
-      // update data-action required with [responsive design]
-      cssMediaQueries();
-    },
-    error: () => {
-      console.error("Server error, check your response");
-    },
-  });
-}
+
 
 /**
  *-------------------------------------------------------------
@@ -1004,10 +965,10 @@ function setActiveStatus(status, user_id) {
  */
 $(document).ready(function() {
   // get contacts list
-  getContacts();
+  // getContacts();
 
   // get contacts list
-  getFavoritesList();
+  // getFavoritesList();
 
   // Clear typing timeout
   clearTimeout(typingTimeout);

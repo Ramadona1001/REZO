@@ -13,18 +13,18 @@
 @section('action-btn')
     <div class="row gy-3 justify-content-end align-items-center">
         <div class="col-auto weekly-dates-div text-end me-2">
-            <a href="#" class="action-item previous"><i class="ti ti-arrow-left"></i></a>
-            <span class="weekly-dates"></span>
+            <a href="#" class="action-item previous"><i class="fa fa-arrow-left" style="color:white"></i></a>
+            <span class="weekly-dates" style="color:white"></span>
             <input type="hidden" id="weeknumber" value="0">
             <input type="hidden" id="selected_dates">
-            <a href="#" class="action-item next"><i class="ti ti-arrow-right"></i>
+            <a href="#" class="action-item next"><i class="fa fa-arrow-right" style="color:white"></i>
             </a>
         </div>
         @can('create timesheet')
             <div class="col-auto project_tasks_select text-end">
                 <div class="dropdown btn btn-sm p-0">
                     <a class="btn btn-primary add-small" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="ti ti-plus me-2"></i>{{__('Add Task on Timesheet')}}
+                        <i class="fa fa-plus me-2"></i>{{__('Add Task on Timesheet')}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right tasks-box" x-placement="bottom-end">
                         <div class="scrollbar-inner">

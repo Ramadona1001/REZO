@@ -21,7 +21,7 @@
     </div>
     @can('manage project')
         <a href="{{ route('projects.show',$project->id) }}" class="btn btn-primary " data-bs-toggle="tooltip" title="{{__('Back')}}">
-            <span class="btn-inner--icon"><i class="ti ti-arrow-left"></i></span>
+            <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
         </a>
     @endcan
 </div>
@@ -42,7 +42,7 @@
                     <div class="page-search">
                         <p class="text-muted mt-3">{{ __("It's looking like you may have taken a wrong turn. Don't worry... it happens to the best of us. Here's a little tip that might help you get back on track.")}}</p>
                         <div class="mt-3">
-                            <a class="btn-return-home badge-blue" href="{{route('dashboard')}}"><i class="ti ti-reply"></i> {{ __('Return Home')}}</a>
+                            <a class="btn-return-home badge-blue" href="{{route('dashboard')}}"><i class="fa fa-reply"></i> {{ __('Return Home')}}</a>
                         </div>
                     </div>
                 @endif

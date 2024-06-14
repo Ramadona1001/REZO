@@ -16,7 +16,7 @@
 
         @can('create proposal')
             <a href="{{ route('proposal.create',0) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Create')}}">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

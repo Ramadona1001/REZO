@@ -66,7 +66,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
 
@@ -106,7 +106,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
                                             {{Form::close()}}
@@ -169,7 +169,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
 
@@ -262,7 +262,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
                                             {{Form::close()}}
@@ -338,7 +338,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
                                             {{Form::close()}}
@@ -404,7 +404,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
                                             {{Form::close()}}
@@ -479,7 +479,7 @@
 
                                             <div class="row">
                                                 <div class="col-12 text-end mt-1">
-                                                    {{ Form::button('<i class="ti ti-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
+                                                    {{ Form::button('<i class="fa fa-plus"></i> '.__('Save Change'), ['type' => 'submit','class' => 'btn btn-primary']) }}
                                                 </div>
                                             </div>
                                             {{Form::close()}}

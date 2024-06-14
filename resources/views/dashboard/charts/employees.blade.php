@@ -5,10 +5,10 @@
     @include('dashboard.charts.employees.genders')
 </div>
 <div class="col-6">
-    @include('dashboard.charts.employees.ages')
+    @include('dashboard.charts.employees.positions')
 </div>
 <div class="col-6">
-    @include('dashboard.charts.employees.positions')
+    @include('dashboard.charts.employees.ages')
 </div>
 <div class="col-6">
     @include('dashboard.charts.employees.departments')

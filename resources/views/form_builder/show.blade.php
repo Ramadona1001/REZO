@@ -14,7 +14,7 @@
     @can('create form field')
         <div class="float-end">
             <a href="#" data-size="md" data-url="{{ route('form.field.create',$formBuilder->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Filed')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         </div>
     @endcan

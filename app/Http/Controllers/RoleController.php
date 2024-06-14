@@ -15,8 +15,11 @@ class RoleController extends Controller
     {
         if(\Auth::user()->can('manage role'))
         {
-
-            $roles = Role::where('created_by', '=', \Auth::user()->creatorId())->where('created_by', '=', \Auth::user()->creatorId())->get();
+            if (auth()->user()->type == 'super admin') {
+                $roles = Role::all();
+            }else{
+                $roles = Role::where('created_by', '=', \Auth::user()->creatorId())->where('created_by', '=', \Auth::user()->creatorId())->get();
+            }
 
             return view('role.index')->with('roles', $roles);
         }

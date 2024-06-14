@@ -44,7 +44,7 @@ class LeadController extends Controller
     {
         if(\Auth::user()->can('manage lead'))
         {
-            if(\Auth::user()->default_pipeline)
+            if(\Auth::user()->default_pipeline != null)
             {
                 $pipeline = Pipeline::where('created_by', '=', \Auth::user()->creatorId())->where('id', '=', \Auth::user()->default_pipeline)->first();
                 if(!$pipeline)
@@ -55,7 +55,15 @@ class LeadController extends Controller
             else
             {
                 $pipeline = Pipeline::where('created_by', '=', \Auth::user()->creatorId())->first();
+                if (!$pipeline) {
+                    $pipeline = new Pipeline();
+                    $pipeline->name = 'Sales';
+                    $pipeline->created_by = \Auth::user()->creatorId();
+                    $pipeline->save();
+                }
             }
+
+            // dd($pipeline);
 
             $pipelines = Pipeline::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
 

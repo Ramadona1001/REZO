@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <select class="form-control  select2" name="time_hour" id="time_hour" required="">
+                <select class="form-control" name="time_hour" id="time_hour" required="">
                     <option value="">{{ __('Hours') }}</option>
 
                     <?php for ($i = 0; $i < 23; $i++) { $i = $i < 10 ? '0' . $i : $i; ?>
@@ -59,7 +59,7 @@
 
     <div class="col-md-12">
         <div class="display-total-time">
-            <i class="ti ti-clock"></i>
+            <i class="fa fa-clock"></i>
             <span>{{ __('Total Time worked on this task') }} : {{ $parseArray['totaltaskhour'] . ' ' . __('Hours') . ' ' . $parseArray['totaltaskminute'] . ' ' . __('Minutes') }}</span>
 
         </div>

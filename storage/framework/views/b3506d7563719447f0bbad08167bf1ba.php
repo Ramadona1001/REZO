@@ -6,12 +6,12 @@
         <?php $__currentLoopData = json_decode($settings['menubar_page']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if((isset($value->login) && $value->login == "on") && (isset($value->template_name) && $value->template_name == 'page_content')): ?>
                 <li>
-                    <a
+                    <a style="color:black;font-weight:bold;"
                        href="<?php echo e(route('custom.page', $value->page_slug)); ?>"><?php echo e($value->menubar_page_name); ?></a>
                 </li>
             <?php elseif( (isset($value->login) && $value->login == "on") && (isset($value->template_name) && $value->template_name == 'page_url')): ?>
                 <li>
-                    <a target="_blank" href="<?php echo e($value->page_url); ?>"><?php echo e($value->menubar_page_name); ?></a>
+                    <a style="color:black;font-weight:bold;" target="_blank" href="<?php echo e($value->page_url); ?>"><?php echo e($value->menubar_page_name); ?></a>
                 </li>
             <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

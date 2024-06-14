@@ -52,7 +52,7 @@ class FreelancerController extends Controller
         if(\Auth::user()->can('manage freelancer'))
         {
             $user    = \Auth::user();
-            $freelancers = Freelancer::all();
+            $freelancers = Freelancer::where('created_by',auth()->user()->id)->get();
 
             return view('freelancers.index', compact('freelancers'));
         }
@@ -130,6 +130,7 @@ class FreelancerController extends Controller
                 'country' => $request->country,
                 'comment' => $request->comment,
                 'mobile' => $request->mobile,
+                'created_by' => auth()->user()->id,
             ]);
 
 

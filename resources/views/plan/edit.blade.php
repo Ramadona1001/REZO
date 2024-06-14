@@ -63,7 +63,7 @@
 
         <div class="form-group col-md-12">
             {{ Form::label('description', __('Description'),['class'=>'form-label']) }}
-            {!! Form::textarea('description', null, ['class'=>'form-control','rows'=>'2']) !!}
+            {!! Form::textarea('description', null, ['class'=>'form-control summernote-simple','rows'=>'2']) !!}
         </div>
         <div class="col-md-6">
             <label class="form-check-label" for="trial"></label>

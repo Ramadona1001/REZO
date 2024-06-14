@@ -352,7 +352,7 @@
                                         <div class="col-md-6 col-sm-6 my-3 my-sm-0">
                                             <div class="d-flex align-items-start mb-3">
                                                 <div class="theme-avtar bg-info">
-                                                    <i class="ti ti-check"></i>
+                                                    <i class="fa fa-check"></i>
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="text-muted text-sm mb-0">{{__('Active Jobs')}}</p>

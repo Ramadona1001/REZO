@@ -4,6 +4,10 @@
     {{ $title }}
 @endsection
 
+@push('css-page')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+@endpush
+
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
     <li class="breadcrumb-item">{{ $title }}</li>

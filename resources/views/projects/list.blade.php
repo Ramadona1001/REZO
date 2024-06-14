@@ -23,7 +23,7 @@
                                 $project_services = \App\Models\ProjectService::where('project_id',$project->id)->get();
                             @endphp
                             <tr>
-                                <td>{{ idFormat('project',$project->id) }}</td>
+                                <td><a href="{{ route('projects.show',$project) }}" class="name mb-0 h6 text-sm btn btn-secondary btn-sm">{{ idFormat('project',$project->id) }}</a></td>
                                 <td>
                                     <p class="mb-0"><a href="{{ route('projects.show',$project) }}" class="name mb-0 h6 text-sm">{{ $project->project_name }}</a></p>
                                     <span class="badge bg-{{\App\Models\Project::$status_color[$project->status]}} p-2 px-3 rounded">{{ __(\App\Models\Project::$project_status[$project->status]) }}</span>

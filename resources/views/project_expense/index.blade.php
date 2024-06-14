@@ -17,7 +17,7 @@
     <div class="float-end">
         @can('create expense')
             <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('projects.expenses.create',$project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create')}}" data-size="lg" data-title="{{__('Create Expense')}}">
-                <span class="btn-inner--icon"><i class="ti ti-plus"></i></span>
+                <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
             </a>
         @endcan
         <a href="{{ route('projects.show',$project->id) }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="{{__('Back')}}">

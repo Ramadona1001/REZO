@@ -36,7 +36,7 @@
                                     <td class="Action">
                                         <div class="action-btn bg-info ms-2">
                                             <a data-size="md" href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="{{ route('productstock.edit', $productService->id) }}" data-ajax-popup="true"  data-size="xl" data-bs-toggle="tooltip" title="{{__('Update Quantity')}}">
-                                                <i class="ti ti-plus text-white"></i>
+                                                <i class="fa fa-plus text-white"></i>
                                             </a>
                                         </div>
 

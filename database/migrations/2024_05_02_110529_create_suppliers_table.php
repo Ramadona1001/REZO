@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('main_category')->nullable();
             $table->string('sub_category')->nullable();
             $table->string('website')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

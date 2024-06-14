@@ -46,7 +46,7 @@ class CustomProjectController extends Controller
         if(\Auth::user()->can('manage project'))
         {
             $positions = Position::get()->pluck('name','id');
-            $services = Service::all();
+            $services = Service::where('created_by',auth()->user()->id)->get();
             return view('custom-projects.index', compact('view','positions','services'));
         }
         else
@@ -64,9 +64,9 @@ class CustomProjectController extends Controller
     {
         if(\Auth::user()->can('create project'))
         {
-          $employees   = Employee::get()->pluck('name', 'id');
-          $clients = Client::get()->pluck('name', 'id');
-          $services = Service::all();
+          $employees   = Employee::where('created_by',auth()->user()->id)->get()->pluck('name', 'id');
+          $clients = Client::where('created_by',auth()->user()->id)->get()->pluck('name', 'id');
+          $services = Service::where('created_by',auth()->user()->id)->get();
           $clients->prepend('Select Client', '');
           $employees->prepend('Select Employee', '');
             return view('custom-projects.create', compact('clients','employees','services'));

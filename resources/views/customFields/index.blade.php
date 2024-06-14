@@ -11,7 +11,7 @@
     <div class="float-end">
         @can('create constant custom field')
             <a href="#" data-url="{{ route('custom-field.create') }}" data-bs-toggle="tooltip" title="{{__('Create')}}" data-ajax-popup="true" data-title="{{__('Create New Custom Field')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

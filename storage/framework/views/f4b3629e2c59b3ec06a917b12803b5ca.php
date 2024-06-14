@@ -16,26 +16,22 @@
 
     $color = !empty($setting['color']) ? $setting['color'] : 'theme-3';
 
-    if(isset($setting['color_flag']) && $setting['color_flag'] == 'true')
-    {
+    if (isset($setting['color_flag']) && $setting['color_flag'] == 'true') {
         $themeColor = 'custom-color';
-    }
-    else {
+    } else {
         $themeColor = $color;
     }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 
 <head>
-    <title><?php echo e(env('APP_NAME')); ?></title>
-    <!-- Meta -->
+    <!-- Meta Tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="title" content="<?php echo e($metatitle); ?>">
     <meta name="description" content="<?php echo e($metadesc); ?>">
 
@@ -54,534 +50,570 @@
     <meta property="twitter:description" content="<?php echo e($metadesc); ?>">
     <meta property="twitter:image"
         content="<?php echo e(isset($meta_logo) && !empty(asset('storage/uploads/meta/' . $meta_logo)) ? asset('storage/uploads/meta/' . $meta_logo) : 'hrmgo.png'); ?>">
-
-    <!-- Favicon icon -->
-    
+    <!-- Page Title -->
+    <title><?php echo e(env('APP_NAME')); ?></title>
+    <!-- Favicon Icon -->
     <link rel="icon"
         href="<?php echo e($sup_logo . '/' . (isset($company_favicon) && !empty($company_favicon) ? $company_favicon : 'favicon.png')); ?>"
         type="image/x-icon" />
-
-    <link rel="stylesheet" type="text/css" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new/css/style.css')); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new/css/responsive.css')); ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        #customers-testimonials .item {
-	text-align: center;
-	padding: 20px;
-	margin-bottom: 50px;
-	-webkit-transform: scale3d(0.8, 0.8, 1);
-	transform: scale3d(0.8, 0.8, 1);
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-#customers-testimonials .owl-item.active.center .item {
-	opacity: 1;
-	-webkit-transform: scale3d(1.0, 1.0, 1);
-	transform: scale3d(1.0, 1.0, 1);
-}
-.owl-carousel .owl-item img {
-	transform-style: preserve-3d;
-	max-width: 100%;
-	margin: 0 auto 17px;
-}
-#customers-testimonials.owl-carousel .owl-dots .owl-dot.active span, #customers-testimonials.owl-carousel .owl-dots .owl-dot:hover span {
-	background: #4280bd;
-	transform: translate3d(0px, -50%, 0px) scale(0.6);
-}
-#customers-testimonials.owl-carousel .owl-dots {
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-}
-#customers-testimonials.owl-carousel .owl-dots .owl-dot {
-	display: inline-block;
-	outline: none;
-}
-#customers-testimonials.owl-carousel .owl-dots .owl-dot span {
-	background: #fff;
-	display: inline-block;
-	height: 20px;
-	margin: 0 2px 5px;
-	transform: translate3d(0px, -50%, 0px) scale(0.3);
-	transform-origin: 50% 50% 0;
-	transition: all 250ms ease-out 0s;
-	width: 20px;
-	border-radius: 100%;
-}
-
-        
-        </style>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/owlCarousel.min.css" />
+    <link rel="stylesheet"
+        href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/flaticon.css" />
+    <link rel="stylesheet" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/animate.css" />
+    <link rel="stylesheet" href="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/css/style.css" />
 </head>
 
-<body class="no-scroll-y">
+<body class="st-blue-color">
+    <div id="st-preloader">
+        <div class="st-preloader-wave"></div>
+        <div class="st-preloader-wave"></div>
+        <div class="st-preloader-wave"></div>
+        <div class="st-preloader-wave"></div>
+        <div class="st-preloader-wave"></div>
+    </div>
+    <header class="st-header st-style1 st-sticky-menu st-color1">
+        <div class="st-main-header">
+            <div class="container">
+                <div class="st-main-header-in">
+                    <div class="st-site-branding">
+                        <a href="<?php echo e(url('/')); ?>" class="st-logo-link"><img style="width: 50px;"
+                                src="<?php echo e($logo . '/' . $settings['site_logo'] . '?' . time()); ?>" alt="demo"></a>
+                    </div>
+                    <!-- For Site Title -->
+                    <!-- <span class="st-site-title">
+            <a href="index.html">Logo</a>
+          </span> -->
+                    <div class="st-nav-wrap st-fade-down">
+                        <div class="st-nav-toggle st-style1">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="st-nav st-desktop-nav">
+                            <ul class="st-nav-list onepage-nav">
+                                <li class="smooth-scroll"><a href="<?php echo e(url('/')); ?>"
+                                        class="nav-link"><?php echo e($settings['home_title']); ?></a></li>
+                                <li><a class="smooth-scroll" href="<?php echo e(url('/#features')); ?>"
+                                        class="nav-link"><?php echo e($settings['feature_title']); ?></a></li>
+                                <li><a class="smooth-scroll" href="<?php echo e(url('/#plans')); ?>"
+                                        class="nav-link"><?php echo e($settings['plan_title']); ?></a></li>
+                                <li><a class="smooth-scroll" href="<?php echo e(url('/#testimonials')); ?>"
+                                        class="nav-link"><?php echo e($settings['testimonial_title']); ?></a></li>
+                                <li><a class="smooth-scroll" href="<?php echo e(url('/#faqs')); ?>"
+                                        class="nav-link"><?php echo e($settings['faq_title']); ?></a></li>
+                                <li><a class="smooth-scroll" href="#price" class="smooth-scroll">Price</a></li>
 
-    <div class="main-page-wrapper">
-
-        <section>
-            <div id="preloader">
-                <div id="ctn-preloader" class="ctn-preloader">
-                    <div class="animation-preloader">
-                        <div class="spinner"></div>
-                    </div>	
+                                <?php if(is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page']))): ?>
+                                    <li class="st-has-children"><a href="#blog"
+                                            class="smooth-scroll"><?php echo e(__('Pages')); ?></a>
+                                        <ul>
+                                            <?php $__currentLoopData = json_decode($settings['menubar_page']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if(isset($value->header) && $value->header == 'on' && isset($value->template_name)): ?>
+                                                    <li><a
+                                                            href='<?php echo e($value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url); ?>'><?php echo e($value->menubar_page_name); ?></a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if(!Auth::check()): ?>
+                                    <li><a href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
+                                    <li><a href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav><!-- .st-nav -->
+                    </div><!-- .st-nav-wrap -->
                 </div>
             </div>
-        </section>
-
-        <div class="theme-main-menu theme-menu-one d-align-item">
-            <div class="logo"><a href="<?php echo e(url('/')); ?>"><img src="<?php echo e($logo . '/' . $settings['site_logo'] . '?' . time()); ?>" alt=""></a></div>
-            <nav id="mega-menu-holder" class="navbar navbar-expand-lg">
-                <div  class="ml-auto nav-container">
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="flaticon-setup"></i>
-                    </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a href="<?php echo e(url('/')); ?>" class="nav-link" ><?php echo e($settings['home_title']); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(url('/#features')); ?>" class="nav-link" ><?php echo e($settings['feature_title']); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(url('/#plans')); ?>" class="nav-link" ><?php echo e($settings['plan_title']); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(url('/#testimonials')); ?>" class="nav-link" ><?php echo e($settings['testimonial_title']); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(url('/#faqs')); ?>" class="nav-link" ><?php echo e($settings['faq_title']); ?></a>
-                            </li>
-
-                            <?php if(is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page']))): ?>
-                            <li class="nav-item dropdown position-relative">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><?php echo e(__("Pages")); ?></a>
-                                <ul class="dropdown-menu">
-                                    <?php $__currentLoopData = json_decode($settings['menubar_page']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if(isset($value->header) && $value->header == 'on' && isset($value->template_name)): ?>
-                                        <li class="nav-item">
-                                            <a href="<?php echo e($value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url); ?>" class="nav-link dropdown-toggle" data-toggle="dropdown"><?php echo e($value->menubar_page_name); ?></a>
-                                        </li>
-                                        <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </ul> <!-- /.dropdown-menu -->
-                            </li>
-                            <?php endif; ?>
-                            <li class="login-button" style=" gap: 10px; display: flex; ">
-                                <?php if(!Auth::check()): ?>
-                                    <a href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a>
-                                    <a href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a>
-                                <?php else: ?>
-                                    <a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a>
-                                <?php endif; ?>
-                            </li>
-                    </ul>
-                </div>
-                </div> <!-- /.container -->
-            </nav> <!-- /#mega-menu-holder -->
-            
-            
-
-
         </div>
+    </header>
 
-        <?php if($settings['home_status'] == 'on'): ?>
-        <div id="theme-banner-four">
-            <img src="<?php echo e($logo . '/' . $settings['home_banner']); ?>" alt="" class="screen-one wow fadeInRight animated" data-wow-duration="2s">
-            
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-8.svg')); ?>" alt="" class="shape-one">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-9.svg')); ?>" alt="" class="shape-two">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-10.svg')); ?>" alt="" class="shape-three">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-11.svg')); ?>" alt="" class="shape-four">
-            <div class="round-shape-one"></div>
-            <div class="round-shape-two"></div>
-            <div class="round-shape-three"></div>
-            <div class="round-shape-four"></div>
+    <div class="st-content">
+        <!-- Start Hero Slider -->
+        <div class="st-hero-slide st-style2 st-type1 st-flex" id="home">
             <div class="container">
-                <div class="main-wrapper">
-                    <div class="slogan wow fadeInDown animated" data-wow-delay="0.2s"><span><?php echo e($settings['home_offer_text']); ?></span></div>
-                    <h1 class="main-title wow fadeInUp animated" data-wow-delay="0.4s"><?php echo e($settings['home_heading']); ?></h1>
-                    <p class="sub-title wow fadeInUp animated" data-wow-delay="0.9s"><?php echo e($settings['home_description']); ?></p>
-                    <ul class="button-group lightgallery">
+                <div class="st-hero-text st-style1 st-color1">
+                    <h1 class="st-hero-title"><?php echo e($settings['home_offer_text']); ?></h1>
+                    <div class="st-hero-subtitle" style="margin-bottom:10px;">
+                        <?php echo e($settings['home_heading']); ?>
+
+                    </div>
+                    <div class="st-hero-subtitle" style="width: 50%;">
+                        <?php echo e($settings['home_description']); ?>
+
+                    </div>
+
+                    <div class="d-flex" style="gap:10px;">
                         <?php if($settings['home_live_demo_link']): ?>
-                        <li><a href="<?php echo e($settings['home_live_demo_link']); ?>" class="more-button wow fadeInLeft animated" data-wow-delay="1.5s"><?php echo e(__('Live Demo')); ?> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            <div class="st-btn-group st-style1">
+                                <a href="<?php echo e($settings['home_live_demo_link']); ?>"
+                                    class="st-btn st-style1 st-color1"><?php echo e(__('Live Demo')); ?></a>
+                            </div>
                         <?php endif; ?>
 
                         <?php if($settings['home_buy_now_link']): ?>
-                        <li><a href="<?php echo e($settings['home_buy_now_link']); ?>" class="fancybox video-button video-button-one wow fadeInRight animated" data-wow-delay="1.5s"><?php echo e(__('Buy Now')); ?></a></li>
+                            <div class="st-btn-group st-style1">
+                                <a href="<?php echo e($settings['home_buy_now_link']); ?>"
+                                    class="st-btn st-style1 st-color1"><?php echo e(__('Buy Now')); ?></a>
+                            </div>
                         <?php endif; ?>
-                    </ul>
-                </div> <!-- /.main-wrapper -->
-            </div> <!-- /.container -->
-        </div>
-        
+                    </div>
 
-        <div class="trusted-partner">
-            <div class="container">
-                <h6 class="title"><?php echo e(__('Trusted by')); ?> <span><?php echo e($settings['home_trusted_by']); ?></span></h6>
 
-                <div class="owl-carousel owl-theme customers-partners">
-                    <div class="item"><a href="#"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/logo/envato.svg')); ?>" alt=""></a></div>
-                    <div class="item"><a href="#"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/logo/envato.svg')); ?>" alt=""></a></div>
-                    <div class="item"><a href="#"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/logo/envato.svg')); ?>" alt=""></a></div>
-                    <div class="item"><a href="#"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/logo/envato.svg')); ?>" alt=""></a></div>
-                    <div class="item"><a href="#"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/logo/envato.svg')); ?>" alt=""></a></div>
                 </div>
             </div>
+            <div class="st-hero-img">
+                <img src="<?php echo e($logo . '/' . $settings['home_banner']); ?>" alt="demo">
+            </div>
+            <div class="st-circla-animation">
+                <div class="st-circle st-circle-first"></div>
+                <div class="st-circle st-circle-second"></div>
+            </div>
         </div>
-
-        <?php endif; ?>
-
+        <!-- End Hero Slider -->
 
         <?php if($settings['feature_status'] == 'on'): ?>
-        <div class="our-service-sass hide-pr" id="features">
-            <div class="container">
-                <div class="theme-title-one text-center">
-                    <div class="icon-box hide-pr">
-                        <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/bg-shape1.svg')); ?>" alt="" class="bg-shape">
-                        <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/icon/icon23.svg')); ?>" alt="" class="icon">
+            <section class="st-service-section st-section-top" id="service">
+                <div class="container">
+                    <div class="st-section-heading st-style2 text-center">
+                        <h2><?php echo e($settings['feature_title']); ?></h2>
+                        <div class="st-seperator">
+                            <div class="st-seperator-left-bar wow fadeInLeft" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/light-img/seperator-icon1.png"
+                                alt="demo" class="st-seperator-icon">
+                            <div class="st-seperator-right-bar wow fadeInRight" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                        </div>
+                        <p><?php echo $settings['feature_heading']; ?></p>
                     </div>
-                    <h4 class="main-title" style="font-size:30px;">
-                        <?php echo e($settings['feature_title']); ?>
-
-                        <?php if($settings['feature_buy_now_link']): ?>
-                            <a href="<?php echo e($settings['feature_buy_now_link']); ?>" class="btn btn-warning btn-sm"><?php echo e(__('Buy Now')); ?><i data-feather="lock" class="ms-2"></i></a>
-                        <?php endif; ?>
-                    </h4>
-                    <h2 class="main-title"><?php echo $settings['feature_heading']; ?></h2>
-                    <p class="mt-3"><?php echo $settings['feature_description']; ?></p>
-                </div> <!-- /.theme-title-one -->
-                
-                <div class="inner-wrapper">
-                    <div class="row">
-                        <?php if(is_array(json_decode($settings['feature_of_features'], true)) || is_object(json_decode($settings['feature_of_features'], true))): ?>
-                            <?php $__currentLoopData = json_decode($settings['feature_of_features'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="col-lg-4 single-block" data-aos="fade-up">
-                                    <div class="service-block">
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <span class="snow-dot"></span>
-                                        <div class="hover-content"></div>
-                                        <img src="<?php echo e($logo . '/' . $value['feature_logo'] . '?' . time()); ?>" alt="">
-                                        <h5 class="title"><a href="#"><?php echo $value['feature_heading']; ?></a></h5>
-                                        <p><?php echo $value['feature_description']; ?></p>
-                                    </div> <!-- /.service-block -->
-                                </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                    </div> <!-- /.row -->
-                </div> <!-- /.inner-wrapper -->
-            </div> <!-- /.container -->
-        </div>
-        <?php endif; ?>
-        
-        <?php if($settings['feature_status'] == 'on'): ?>
-            <div class="our-feature-sass">
-                <div class="section-shape-one"></div>
-                <div class="section-shape-two"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-18.svg')); ?>" alt=""></div>
-                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-18.svg')); ?>" alt="" class="section-shape-three">
-                <div class="section-shape-four"></div>
-                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-20.svg')); ?>" alt="" class="section-shape-five">
-                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-21.svg')); ?>" alt="" class="section-shape-six">
-                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-22.svg')); ?>" alt="" class="section-shape-seven">
-                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-19.svg')); ?>" alt="" class="section-shape-eight">
-                <a href="#feature-sass" class="down-arrow scroll-target"><span><i class="flaticon-back"></i></span></a>
-                <div class="feature-wrapper" id="feature-sass">
-                    <?php if(is_array(json_decode($settings['other_features'], true)) || is_object(json_decode($settings['other_features'], true))): ?>
-                        <?php $__currentLoopData = json_decode($settings['other_features'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="single-feature-block">
-                                <div class="container clearfix">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <img src="<?php echo e($logo . '/' . $value['other_features_image']); ?>" alt="" class="main-shape" data-aos="fade-right" data-aos-delay="200">
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="text-box">
-                                                <h2 class="main-title"><?php echo $value['other_features_heading']; ?><b class="line"></b></h2>
-                                                <?php echo $value['other_featured_description']; ?>
-
-                                                <a href="<?php echo e($value['other_feature_buy_now_link']); ?>" class="read-more"><?php echo e(__('Buy Now')); ?></a>
-                                            </div>
+                </div>
+                <div class="st-owl-controler3-hover">
+                    <div class="container">
+                        <div class="st-service-carousel owl-carousel st-style2 st-owl-controler3">
+                            <?php if(is_array(json_decode($settings['feature_of_features'], true)) ||
+                                    is_object(json_decode($settings['feature_of_features'], true))): ?>
+                                <?php $__currentLoopData = json_decode($settings['feature_of_features'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="st-image-box st-style1 text-center wow fadeIn"
+                                        data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                        <a href="#" class="st-image"><img
+                                                src="<?php echo e($logo . '/' . $value['feature_logo'] . '?' . time()); ?>"
+                                                alt="demo"></a>
+                                        <div class="st-image-box-info">
+                                            <h3 class="st-image-box-title"><a
+                                                    href="#"><?php echo $value['feature_heading']; ?></a></h3>
+                                            <div class="st-image-box-text"><?php echo $value['feature_description']; ?></div>
                                         </div>
                                     </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+        <?php endif; ?>
+
+        <?php if($settings['feature_status'] == 'on'): ?>
+            <section class="st-service-section st-section-top" id="service">
+                <div class="container">
+                    <div class="st-section-heading st-style2 text-center">
+                        <h2><?php echo e(__('Other Features')); ?></h2>
+                        <div class="st-seperator">
+                            <div class="st-seperator-left-bar wow fadeInLeft" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/light-img/seperator-icon1.png"
+                                alt="demo" class="st-seperator-icon">
+                            <div class="st-seperator-right-bar wow fadeInRight" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                        </div>
+                        <p><?php echo $settings['feature_heading']; ?></p>
+                    </div>
+                </div>
+                <div class="st-owl-controler3-hover">
+                    <div class="container">
+                        <div class="st-service-carousel owl-carousel st-style2 st-owl-controler3">
+                            <?php if(is_array(json_decode($settings['other_features'], true)) ||
+                                    is_object(json_decode($settings['other_features'], true))): ?>
+                                <?php $__currentLoopData = json_decode($settings['other_features'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="st-image-box st-style1 text-center wow fadeIn"
+                                        data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                        <a href="#" class="st-image"><img style="    height: 250px;"
+                                                src="<?php echo e($logo . '/' . $value['other_features_image']); ?>"
+                                                alt="demo"></a>
+                                        <div class="st-image-box-info">
+                                            <h3 class="st-image-box-title"><a href="#">
+                                                    <?php echo $value['other_features_heading']; ?></a></h3>
+                                            <div class="st-image-box-text"><?php echo $value['other_featured_description']; ?></div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <?php if($settings['discover_status'] == 'on'): ?>
+            <section class="st-service-section st-section-top" id="service">
+                <div class="container">
+                    <div class="st-section-heading st-style2 text-center">
+                        <h2><?php echo $settings['discover_heading']; ?></h2>
+                        <div class="st-seperator">
+                            <div class="st-seperator-left-bar wow fadeInLeft" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/light-img/seperator-icon1.png"
+                                alt="demo" class="st-seperator-icon">
+                            <div class="st-seperator-right-bar wow fadeInRight" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                        </div>
+                        <p><?php echo $settings['discover_description']; ?></p>
+                    </div>
+                </div>
+                <div class="st-owl-controler3-hover">
+                    <div class="container">
+                        <div class="st-service-carousel owl-carousel st-style2 st-owl-controler3">
+                            <?php if(is_array(json_decode($settings['discover_of_features'], true)) ||
+                                    is_object(json_decode($settings['discover_of_features'], true))): ?>
+                                <?php $__currentLoopData = json_decode($settings['discover_of_features'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="st-image-box st-style1 text-center wow fadeIn"
+                                        data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                        <a href="<?php if($settings['discover_live_demo_link']): ?> <?php echo e($settings['discover_live_demo_link']); ?> <?php else: ?> <?php echo e('#'); ?> <?php endif; ?>"
+                                            class="st-image"><img style="    height: 250px;"
+                                                src="<?php echo e($logo . '/' . $value['discover_logo']); ?>" alt="demo"></a>
+                                        <div class="st-image-box-info">
+                                            <h3 class="st-image-box-title"><a href="#">
+                                                    <?php echo $value['discover_heading']; ?></a></h3>
+                                            <div class="st-image-box-text"><?php echo $value['discover_description']; ?></div>
+                                        </div>
+                                        <?php if($settings['discover_buy_now_link']): ?>
+                                            <a href="<?php echo e($settings['discover_buy_now_link']); ?>"
+                                                class="st-btn st-style1 st-size1 st-color2 mb-3"><?php echo e(__('Buy Now ')); ?></a>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <?php if($settings['screenshots_status'] == 'on'): ?>
+            <div class="st-project-wrap st-section-top" id="portfolio">
+                <div class="container">
+                    <div class="st-section-heading st-style2 text-center">
+                        <h2><?php echo $settings['screenshots_heading']; ?></h2>
+
+                        <div class="st-seperator">
+                            <div class="st-seperator-left-bar wow fadeInLeft" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/light-img/seperator-icon1.png"
+                                alt="demo" class="st-seperator-icon">
+                            <div class="st-seperator-right-bar wow fadeInRight" data-wow-duration="1s"
+                                data-wow-delay="0.2s"></div>
+                        </div>
+                        <p><?php echo $settings['screenshots_description']; ?></p>
+                    </div>
+                </div>
+                <div class="st-project st-project-carousel owl-carousel st-style1 st-owl-controler1">
+                    <?php if(is_array(json_decode($settings['screenshots'], true)) || is_object(json_decode($settings['screenshots'], true))): ?>
+                        <?php $__currentLoopData = json_decode($settings['screenshots'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a href="#" class="st-single-project st-bg wow fadeIn" data-wow-duration="0.8s"
+                                data-wow-delay="0.2s" data-src="<?php echo e($logo . '/' . $value['screenshots']); ?>">
+                                <div class="st-project-meta">
+                                    <h3><?php echo $value['screenshots_heading']; ?></h3>
                                 </div>
-                            </div>
+                            </a>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php endif; ?>
                 </div>
             </div>
-        <?php endif; ?>
-
-        <?php if($settings['plan_status']): ?>
-        <div class="sass-our-pricing" id="plans">
-            <div class="section-shape-one"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-18.svg')); ?>" alt=""></div>
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-24.svg')); ?>" alt="" class="section-shape-two" data-aos="fade-right" data-aos-duration="3000">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-25.svg')); ?>" alt="" class="section-shape-three">
-            <div class="section-shape-four"></div>
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-26.svg')); ?>" alt="" class="section-shape-five">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-27.svg')); ?>" alt="" class="section-shape-six" data-aos="fade-left" data-aos-duration="3000">
-
-
-            <div class="container">
-                <div class="theme-title-one text-center hide-pr">
-                    <div class="icon-box hide-pr">
-                        <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/bg-shape4.svg')); ?>" alt="" class="bg-shape">
-                        <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/icon/icon26.svg')); ?>" alt="" class="icon">
-                    </div>
-                    <h2 class="main-title"><?php echo $settings['plan_heading']; ?></h2>
-                    <p><?php echo $settings['plan_description']; ?></p>
-                </div> <!-- /.theme-title-one -->
-                <div class="row no-gutters">
-                    <?php
-                        $collection = \App\Models\Plan::orderBy('price', 'ASC')->get();
-                    ?>
-                    <?php $__currentLoopData = $collection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-4">
-                        <div class="single-pr-table free">
-                            <div class="pr-header">
-                                <div class="price"><?php echo e(!empty($admin_payment_setting['currency_symbol']) ? $admin_payment_setting['currency_symbol'] : $adminSettings['site_currency_symbol'] . $value->price); ?></div>
-                                <div class="package"><?php echo e($value->duration); ?></div>
-                                <h4 class="title"><?php echo e($value->name); ?></h4>
-                                <p>
-                                    <?php echo $value->description; ?>
-
-                                </p>
-                            </div> <!-- /.pr-header -->
-                            <div class="pr-body">
-                                <h3 class="feature"><?php echo e(__('Top Features')); ?></h3>
-                                <ul>
-                                    <li>
-                                        <div class="form-check text-start">
-                                            <label class="form-check-label" for="customCheckc1">
-                                                <i class="text-primary ti ti-circle-plus"></i>
-                                                <?php echo e($value->max_users == -1 ? 'Unlimited' : $value->max_users); ?>
-
-                                                <?php echo e(__('User')); ?></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check text-start">
-                                            <i class="text-primary ti ti-circle-plus"></i>
-                                            <label class="form-check-label"
-                                                for="customCheckc1"><?php echo e($value->max_employees == -1 ? 'Unlimited' : $value->max_employees); ?>
-
-                                                <?php echo e(__('Employees')); ?></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check text-start">
-                                            <i class="text-primary ti ti-circle-plus"></i>
-                                            <label class="form-check-label"
-                                                for="customCheckc1"><?php echo e($value->storage_limit == -1 ? __('Lifetime') : $value->storage_limit); ?>
-
-                                                <?php echo e(__('MB Storage')); ?></label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check text-start">
-                                            <i class="text-primary ti ti-circle-plus"></i>
-                                            <label class="form-check-label"
-                                                for="customCheckc1"><?php echo e($value->enable_chatgpt == 'on' ? __('Enable Chat GPT') : __('Disable Chat GPT')); ?></label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> <!-- /.pr-body -->
-                            <div class="pr-footer">
-                                <a href="<?php echo e(route('register')); ?>" class="upgrade-button"><?php echo e(__('Start with Starter')); ?></a>
-                            </div> <!-- /.pr-footer -->
-                        </div> <!-- /.single-pr-table -->
-                    </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            </div> <!-- /.container -->
-        </div>
-        <?php endif; ?>
-
-        <?php if($settings['testimonials_status'] == 'on'): ?>
-        
-        <section class="testimonials">
-            <div class="container">
-        
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="container-fluid px-3 px-sm-5 my-5 text-center">
-                    <h2 class="main-title"><?php echo $settings['testimonials_heading']; ?></h2>
-                    <p><?php echo $settings['testimonials_description']; ?></p>
-                  </div>
-                  <div id="customers-testimonials" class="owl-carousel">
-        
-                    <!--TESTIMONIAL 1 -->
-                    <?php if(is_array(json_decode($settings['testimonials'])) || is_object(json_decode($settings['testimonials']))): ?>
-                        <?php $__currentLoopData = json_decode($settings['testimonials']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="item" style="width:100%;background: whitesmoke;padding: 25px;border-radius: 10px;">
-                            <div class="">
-                                <?php if(isset($value->testimonials_user_avtar)): ?>
-                                    <img src="<?php echo e($logo . '/' . $value->testimonials_user_avtar); ?>" class="wid-40 rounded-circle me-3" style="width:200px;">
-                                <?php endif; ?>
-                                <span style="font-weight:bold;">
-                                    <b class="fw-bold d-block"><?php echo e($value->testimonials_user); ?></b>
-                                    <?php echo e($value->testimonials_designation); ?>
-
-                                </span>
-                                <hr>
-                                <p><?php echo e($value->testimonials_description); ?></p>
-                                <h6 class="name"><?php echo e($value->testimonials_title); ?></h6>
-                            </div>             
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
-              
-                  </div>
-                </div>
-              </div>
-            </div>
-        </section>
-
         <?php endif; ?>
 
         <?php if($settings['faq_status'] == 'on'): ?>
-        <div class="theme-title-one text-center hide-pr" style="margin-top:50px;" id="faqs">
-            <h2 class="main-title"><?php echo e($settings['faq_title']); ?></h2>
-            <p><?php echo $settings['faq_heading']; ?></p>
-            <p><?php echo $settings['faq_description']; ?></p>
-        </div>
-        <div class="sass-faq-section">
+            <section class="st-skill-wrap st-section-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="st-vertical-middle">
+                                <div class="st-vertical-middle-in wow fadeInLeft" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <div class="st-skill-img text-center">
+                                        <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/light-img/skill-img.png"
+                                            alt="demo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="st-section-heading st-style2 st-type2">
+                                <h2><?php echo $settings['faq_heading']; ?></h2>
+                                <p><?php echo $settings['faq_description']; ?></p>
+                            </div>
 
-            <div class="section-shape-one"><img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-18.svg')); ?>" alt=""></div>
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-26.svg')); ?>" alt="" class="section-shape-two">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-29.svg')); ?>" alt="" class="section-shape-three">
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-30.svg')); ?>" alt="" class="section-shape-four">
-            <div class="container">
-               
-                <div class="faq-tab-wrapper">
-                    <div class="tab-content">
-                        <div id="payment" class="tab-pane fade show active">
-                            <div class="row">
+                            <div class="accordion" id="faqAccordion">
                                 <?php if(is_array(json_decode($settings['faqs'], true)) || is_object(json_decode($settings['faqs'], true))): ?>
                                     <?php $__currentLoopData = json_decode($settings['faqs'], true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="col-12">
-                                            <div class="panel-group theme-accordion" id="accordion<?php echo e($key); ?>">
-                                                <div class="faq-panel">
-                                                    <div class="panel">
-                                                        <div class="panel-heading active-panel">
-                                                            <h6 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion<?php echo e($key); ?>" href="#collapse<?php echo e($key); ?>"><?php echo $value['faq_questions']; ?></a>
-                                                            </h6>
-                                                        </div>
-                                                        <div id="collapse<?php echo e($key); ?>" class="panel-collapse collapse">
-                                                            <div class="panel-body">
-                                                                <p><?php echo $value['faq_answer']; ?></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        <div class="card">
+                                            <div class="card-header" id="heading<?php echo e($key); ?>">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button"
+                                                        data-toggle="collapse" data-target="#faq<?php echo e($key); ?>"
+                                                        aria-expanded="true" aria-controls="faq<?php echo e($key); ?>">
+                                                        <?php echo $value['faq_questions']; ?>
+
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="faq<?php echo e($key); ?>" class="collapse show"
+                                                aria-labelledby="heading<?php echo e($key); ?>"
+                                                data-parent="#faqAccordion">
+                                                <div class="card-body">
+                                                    <?php echo $value['faq_answer']; ?>
+
                                                 </div>
                                             </div>
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
-                            </div> <!-- /.row -->
+                            </div>
                         </div>
-                    </div> <!-- /.tab-content -->
-                </div> <!-- /.faq-tab-wrapper -->
 
-
-                <a href="#footer" class="down-button scroll-target"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            </div> <!-- /.container -->
-        </div>
+                    </div>
+                </div>
+            </section>
         <?php endif; ?>
 
-        <footer class="theme-footer-one" id="footer">
-            <div class="shape-one" data-aos="zoom-in-right"></div>
-            <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/images/shape/shape-67.svg')); ?>" alt="" class="shape-two">
-            <div class="top-footer">
+        <?php if($settings['plan_status']): ?>
+            <section class="st-pricing-wrap st-section" id="price">
+                <div class="container">
+                    <div class="st-section-heading st-style2 text-center">
+                        <h2><?php echo $settings['plan_heading']; ?></h2>
+                        <div class="st-seperator">
+                            <div class="st-seperator-left-bar wow fadeInLeft" data-wow-duration="1s"
+                                data-wow-delay="0.2s">
+                            </div>
+                            <img src="assets/img/light-img/seperator-icon1.png" alt="demo"
+                                class="st-seperator-icon">
+                            <div class="st-seperator-right-bar wow fadeInRight" data-wow-duration="1s"
+                                data-wow-delay="0.2s">
+                            </div>
+                        </div>
+                        <p><?php echo $settings['plan_description']; ?></p>
+                    </div>
+                </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-12 about-widget" data-aos="fade-up">
-                            <a href="<?php echo e(url('/')); ?>" class="logo"><img style="width:70px;" src="<?php echo e($logo . '/' . $settings['site_logo'] . '?' . time()); ?>" alt=""></a>
-                            <p><?php echo $settings['site_description']; ?></p>
-                        </div> <!-- /.about-widget -->
-                        <div class="col-lg-4 col-lg-3 col-sm-6 col-12 footer-list" data-aos="fade-up">
-                            <h5 class="title"><?php echo e(__('Our Pages')); ?></h5>
-                            <ul>
-                                <?php if(is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page']))): ?>
-                                    <?php $__currentLoopData = json_decode($settings['menubar_page']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if(isset($value->footer) && $value->footer == 'on' && $value->header == 'off' && isset($value->template_name)): ?>
-                                            <li><a
-                                                    href="<?php echo e($value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url); ?>"><?php echo e($value->menubar_page_name); ?></a>
-                                            </li>
+                        <?php
+                            $collection = \App\Models\Plan::orderBy('price', 'ASC')->get();
+                            $admin_payment_setting = Utility::getAdminPaymentSetting();
+                        ?>
+                        <?php $__currentLoopData = $collection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-lg-4">
+                                <div class="st-price-card text-center wow fadeInUp" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <div class="st-price-card-img"><img
+                                            src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/price-img1.png"
+                                            alt="demo">
+                                    </div>
+                                    <h3 class="st-price-card-title"><?php echo e($value->name); ?></h3>
+                                    <div class="st-price">
+                                        <h3><?php echo e(isset($admin_payment_setting['currency_symbol']) ? $admin_payment_setting['currency_symbol'] : '$'); ?><?php echo e(intval($value->price)); ?>
+
+                                        </h3>
+                                    </div>
+                                    <ul class="st-price-card-feature st-mp0">
+                                      <?php echo $value->description; ?>
+
+                                    </ul>
+                                    <div class="st-price-card-btn">
+                                        <a href="<?php echo e(route('register',['lang'=>'en','plan'=>$value->id])); ?>"
+                                            class="st-btn st-style1 st-size1 st-color3"><?php echo e(__('Start The Plan')); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+        <!-- End Pricing Plan -->
+
+        <!-- Start Client Section -->
+        <div class="st-client-wrap st-section">
+            <div class="container">
+                <div class="st-client-carousel owl-carousel">
+                    <?php $__currentLoopData = explode(',', $settings['home_logo']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $home_logo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="st-client-logo st-flex wow fadeIn" data-wow-duration="0.8s"
+                            data-wow-delay="0.2s">
+                            <img src="<?php echo e($logo . '/' . $home_logo); ?>" alt="demo">
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+            </div>
+        </div>
+        <!-- End Client Section -->
+
+        <!-- Start Testimonial Section -->
+        <?php if($settings['testimonials_status'] == 'on'): ?>
+            <section class="st-testimonial-wrap st-section st-gray-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="st-testimonial-right-img st-flex wow fadeInLeft" data-wow-duration="0.8s"
+                                data-wow-delay="0.2s">
+                                <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/testimonial-img.png"
+                                    alt="demo">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="st-vertical-middle">
+                                <div class="st-vertical-middle-in">
+                                    <div class="st-section-heading st-style1">
+                                        <h3><?php echo $settings['testimonials_heading']; ?></h3>
+                                        <h2><?php echo $settings['testimonials_description']; ?></h2>
+                                    </div>
+                                    <div class="st-testimonial-slider owl-carousel st-owl-controler4">
+                                        <?php if(is_array(json_decode($settings['testimonials'])) || is_object(json_decode($settings['testimonials']))): ?>
+                                            <?php $__currentLoopData = json_decode($settings['testimonials']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <div class="st-single-testimonial">
+                                                    <div class="st-testimonial-quote st-flex"><i
+                                                            class="fas fa-quote-right"></i></div>
+                                                    <div class="st-testimonial-text">
+                                                        <?php echo e($value->testimonials_description); ?></div>
+                                                    <div class="st-testimonial-meta">
+                                                        <h3><?php echo e($value->testimonials_title); ?></h3>
+                                                        <p><?php echo e($value->testimonials_user); ?></p>
+                                                        <p><?php echo e($value->testimonials_designation); ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php endif; ?>
-                                        <?php if(isset($value->footer) && $value->footer == 'on' && $value->header == 'on' && isset($value->template_name)): ?>
-                                            <li><a
-                                                    href="<?php echo e($value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url); ?>"><?php echo e($value->menubar_page_name); ?></a>
-                                            </li>
-                                        <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php endif; ?>
-                            </ul>
-                        </div> <!-- /.footer-recent-post -->
-                        
-                        <div class="col-lg-4 col-lg-2 col-sm-6 col-12 footer-information" data-aos="fade-up">
-                            <h5 class="title"><?php echo $settings['joinus_heading']; ?></h5>
-                            <p><?php echo $settings['joinus_description']; ?></p>
-                            <?php if($settings['joinus_status'] == 'on'): ?>
-                                <div class="ftr-col ftr-subscribe">
-                                    <form method="post" action="<?php echo e(route('join_us_store')); ?>">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+        <!-- End Testimonial Section -->
+
+        <!-- Start News Letter Section -->
+        <?php if($settings['joinus_status'] == 'on'): ?>
+        <section class="st-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="st-newsletter-wrap">
+                            <div class="st-left-newsletter">
+                                <div class="st-section-heading st-style1 st-type1">
+                                    <h3><?php echo $settings['joinus_heading']; ?></h3>
+                                    <h2><?php echo $settings['joinus_description']; ?></h2>
+                                </div>
+                                <div class="st-newsletter">
+                                    <form class="mailchimp st-subscribe-form"
+                                        action="<?php echo e(route('join_us_store')); ?>">
                                         <?php echo csrf_field(); ?>
-                                        <input type="text" name="email" placeholder="<?php echo e(__('Type your email address')); ?>..." required class="form-control">
-                                        <button type="submit" class="btn btn-dark rounded-pill mt-3"><?php echo e(__('Join Us!')); ?></button>
+                                        <input type="email" name="subscribe" id="subscriber-email"
+                                            placeholder="Enter your Email">
+                                        <button type="submit" id="subscribe-button" class="st-newsletter-btn"><i
+                                                class="flaticon-plane"></i></button>
+                                        <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
+                                        <h5 class="subscription-success"> .</h5>
+                                        <h5 class="subscription-error"> .</h5>
+                                        <label class="subscription-label" for="subscriber-email"></label>
                                     </form>
                                 </div>
-                            <?php endif; ?>
+                            </div>
+                            <div class="st-right-newsletter">
+                                <div class="st-newsletter-img wow fadeInRight" data-wow-duration="0.8s"
+                                    data-wow-delay="0.2s">
+                                    <img src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/news-letter-img.png"
+                                        alt="demo">
+                                    <div class="st-bard-animation">
+                                        <div class="st-bard-animation1"><img
+                                                src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/bard1.png"
+                                                alt="demo"></div>
+                                        <div class="st-bard-animation2"><img
+                                                src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/bard2.png"
+                                                alt="demo"></div>
+                                        <div class="st-bard-animation3"><img
+                                                src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/img/blue-img/bard3.png"
+                                                alt="demo"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div> <!-- /.row -->
-                </div> <!-- /.container -->
-            </div> <!-- /.top-footer -->
-            
-            <div class="container">
-                <div class="bottom-footer">
-                    <div class="clearfix">
-                        <p>&copy;<?php echo e(date(' Y')); ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
 
-                            <?php echo e(App\Models\Utility::getValByName('footer_text') ? App\Models\Utility::getValByName('footer_text') : config('app.name', 'Resource Managment')); ?></p>
-                        <ul>
+
+
+
+        <footer class="st-site-footer ">
+            <div class="st-main-footer text-center">
+                <div class="container">
+                    <div class="st-footer-social">
+                        <ul class="st-footer-social-btn st-flex st-mp0">
                             <?php echo $__env->make('landingpage::layouts.buttons', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </ul>
                     </div>
-                </div> <!-- /.bottom-footer -->
+                </div>
+            </div>
+            <div class="st-copyright text-center">
+                <div class="st-copyright-text">
+                    <?php echo e(App\Models\Utility::getValByName('footer_text') ? App\Models\Utility::getValByName('footer_text') : config('app.name', 'Resource Managment')); ?>
+
+                </div>
             </div>
         </footer>
-        
-        <button class="scroll-top tran3s">
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-        </button>
-
-    </div>
 
 
-
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/jquery.2.2.3.min.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/popper.js/popper.min.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/bootstrap/js/bootstrap.min.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/mega-menu/assets/js/custom.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/aos-next/dist/aos.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/WOW-master/dist/wow.min.js')); ?>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/jquery.appear.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/jquery.countTo.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/vendor/fancybox/dist/jquery.fancybox.min.js')); ?>"></script>
-    <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new/js/theme.js')); ?>"></script>
-
-    
-
-
-<?php echo $__env->yieldPushContent('custom-scripts'); ?>
-<?php if($get_cookie['enable_cookie'] == 'on'): ?>
-    <?php echo $__env->make('layouts.cookie_consent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php endif; ?>
+        <!-- Start Video Popup -->
+        <div class="st-video-popup">
+            <div class="st-video-popup-overlay"></div>
+            <div class="st-video-popup-content">
+                <div class="st-video-popup-layer"></div>
+                <div class="st-video-popup-container">
+                    <div class="st-video-popup-align">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="about:blank"></iframe>
+                        </div>
+                    </div>
+                    <div class="st-video-popup-close"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Video Popup -->
+        <!-- Scripts -->
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/mailchimp.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/owlCarousel.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/tamjid-counter.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/wow.min.js"></script>
+        <script src="<?php echo e(Module::asset('LandingPage:Resources/assets/new')); ?>/rtl/js/main.js"></script>
 </body>
 
 </html>

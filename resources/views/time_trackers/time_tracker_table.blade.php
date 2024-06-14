@@ -96,7 +96,7 @@
                                 }
                             @endphp
                             <div class="row acc-mainmenu">
-                                <div class="col-3"> <i class="ti ti-plus accodian-plus"></i> {{$key}}</div>
+                                <div class="col-3"> <i class="fa fa-plus accodian-plus"></i> {{$key}}</div>
                                 <div class="col-1">{{$project_name}}</div>
                                 <div class="col-1">{{$user_name}}</div>
                                 <div class="col-2">#</div>

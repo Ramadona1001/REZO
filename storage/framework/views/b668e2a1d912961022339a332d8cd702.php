@@ -1,42 +1,105 @@
 <?php
     $employeeCounts = \App\Models\Employee::select(
-    \DB::raw('YEAR(NOW()) - YEAR(dob) - (DATE_FORMAT(NOW(), "%m%d") < DATE_FORMAT(dob, "%m%d")) AS age'),
-    \DB::raw('COUNT(*) as count'))->groupBy('age')
-    ->where('created_by',\Auth::user()->creatorId())
-    ->get();
-    $dataArray = [["Age", "No. Employees", ["role" => "style"]]];
-    foreach ($employeeCounts as $count) {
-        $dataArray[] = ['Age '.$count->age, $count->count,"#055bbb"];
-    }
-    $dataJson = json_encode($dataArray);
+        \DB::raw('YEAR(NOW()) - YEAR(dob) - (DATE_FORMAT(NOW(), "%m%d") < DATE_FORMAT(dob, "%m%d")) AS age'),
+        \DB::raw('COUNT(*) as count'),
+    )
+        ->groupBy('age')
+        ->where('created_by', \Auth::user()->creatorId())
+        ->get();
+
 ?>
 
+<div class="card">
+    <div class="card-header">
+        <?php echo e(__('Employee Ages')); ?>
 
-<div id="ages"></div>
-<?php $__env->startPush('css-page'); ?>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </div>
+    <div class="card-body">
+        <div id="ages"></div>
+    </div>
+</div>
+
+<?php $__env->startPush('script-page'); ?>
     <script type="text/javascript">
-        google.charts.load("current", {packages:['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-          var data = google.visualization.arrayToDataTable(<?php echo $dataJson; ?>);
-    
-          var view = new google.visualization.DataView(data);
-          view.setColumns([0, 1,
-                           { calc: "stringify",
-                             sourceColumn: 1,
-                             type: "string",
-                             role: "annotation" },
-                           2]);
-    
-          var options = {
-            title: "<?php echo e(__('Employees Ages')); ?>",
-            bar: {groupWidth: "95%"},
-            legend: { position: "none" },
-          };
-          var chart = new google.visualization.ColumnChart(document.getElementById("ages"));
-          chart.draw(view, options);
-      }
-      </script>
+        var employeeCounts = <?php echo $employeeCounts; ?>;
+
+        var options = {
+            series: [{
+                name: 'Employee Count',
+                data: employeeCounts.map(item => item.count)
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 10,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function(val) {
+                    return val;
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+            },
+            xaxis: {
+                categories: employeeCounts.map(item => item.age),
+                position: 'top',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: false,
+                }
+            },
+            title: {
+                text: 'Employee Counts by Age',
+                floating: true,
+                offsetY: 330,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#ages"), options);
+        chart.render();
+    </script>
 <?php $__env->stopPush(); ?>
 <?php /**PATH C:\xampp\htdocs\rezo2\resources\views/dashboard/charts/employees/ages.blade.php ENDPATH**/ ?>

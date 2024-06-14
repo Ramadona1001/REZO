@@ -18,14 +18,9 @@ class TimesheetController extends Controller
         $authuser = Auth::user();
         if(\Auth::user()->can('manage timesheet'))
         {
-            $project_ids = $authuser->projects()->pluck('project_id')->toArray();
+            $project = Project::where('id', $project_id)->first();
 
-            if(in_array($project_id, $project_ids))
-            {
-                $project = Project::where('id', $project_id)->first();
-
-                return view('projects.timesheets.index', compact('project'));
-            }
+            return view('projects.timesheets.index', compact('project'));
         }
         else
         {
@@ -101,12 +96,12 @@ class TimesheetController extends Controller
         {
           if($authuser->type == 'client'){
 
-            $project_ids = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();
+            $project_ids = Project::where('id',$request->project_id)->pluck('id','id')->toArray();
           }else{
 
-            $project_ids = $authuser->projects()->pluck('project_id','project_id')->toArray();
-          }
-            $timesheets  = Timesheet::select('timesheets.*')->join('projects', 'projects.id', '=', 'timesheets.project_id');
+            $project_ids = Project::where('id',$request->project_id)->pluck('id','id')->toArray();
+        }
+        $timesheets  = Timesheet::select('timesheets.*')->join('projects', 'projects.id', '=', 'timesheets.project_id');
 
             if($timesheet_type == 'task')
             {
@@ -141,7 +136,6 @@ class TimesheetController extends Controller
             else if(in_array($project_id, $project_ids))
             {
                 $timesheets = $projects_timesheet->get()->groupBy('task_id')->toArray();
-
             }
 
             $returnHTML = Project::getProjectAssignedTimesheetHTML($projects_timesheet, $timesheets, $days, $project_id);

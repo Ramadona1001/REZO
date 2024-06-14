@@ -24,7 +24,7 @@
             <div class="col-auto project_tasks_select text-end">
                 <div class="dropdown btn btn-sm p-0">
                     <a class="btn btn-primary add-small" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="ti ti-plus me-2"></i>{{__('Add Task on Timesheet')}}
+                        <i class="fa fa-plus me-2"></i>{{__('Add Task on Timesheet')}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right tasks-box" x-placement="bottom-end">
                         <div class="scrollbar-inner">

@@ -368,7 +368,7 @@
                                             <h5>{{__('Users')}}</h5>
                                             <div class="float-end">
                                                 <a  data-size="md" data-url="{{ route('leads.users.edit',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add User')}}" class="btn btn-sm btn-primary ">
-                                                    <i class="ti ti-plus text-white"></i>
+                                                    <i class="fa fa-plus text-white"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -419,7 +419,7 @@
                                             <h5>{{__('Products')}}</h5>
                                             <div class="float-end">
                                                 <a data-size="md" data-url="{{ route('leads.products.edit',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Product')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus text-white"></i>
+                                                    <i class="fa fa-plus text-white"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -473,7 +473,7 @@
                                             <h5>{{__('Sources')}}</h5>
                                             <div class="float-end">
                                             <a data-size="md" data-url="{{ route('leads.sources.edit',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Source')}}" class="btn btn-sm btn-primary">
-                                                <i class="ti ti-plus text-white"></i>
+                                                <i class="fa fa-plus text-white"></i>
                                             </a>
                                         </div>
                                         </div>
@@ -518,7 +518,7 @@
                                             @can('create lead email')
                                                 <div class="float-end">
                                                     <a data-size="md" data-url="{{ route('leads.emails.create',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create Email')}}" class="btn btn-sm btn-primary">
-                                                        <i class="ti ti-plus text-white"></i>
+                                                        <i class="fa fa-plus text-white"></i>
                                                     </a>
                                                 </div>
                                             @endcan
@@ -567,7 +567,7 @@
                                             <h5>{{__('Discussion')}}</h5>
                                             <div class="float-end">
                                                 <a data-size="lg" data-url="{{ route('leads.discussions.create',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Message')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus text-white"></i>
+                                                    <i class="fa fa-plus text-white"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -649,7 +649,7 @@
 
                                 <div class="float-end">
                                 <a data-size="lg" data-url="{{ route('leads.calls.create',$lead->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Call')}}" class="btn btn-sm btn-primary">
-                                    <i class="ti ti-plus text-white"></i>
+                                    <i class="fa fa-plus text-white"></i>
                                 </a>
                             </div>
                             </div>

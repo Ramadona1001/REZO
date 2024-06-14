@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-6 text-end">
                         <a href="#" class="btn btn-xs btn-secondary btn-icon rounded-pill" data-toggle="collapse" data-target="#overview">
-                            <span class="btn-inner--icon"><i class="ti ti-plus"></i></span>
+                            <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                         </a>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-6 text-end">
                         <a href="#" class="btn btn-xs btn-secondary btn-icon rounded-pill" data-toggle="collapse" data-target="#form-checklist">
-                            <span class="btn-inner--icon"><i class="ti ti-plus"></i></span>
+                            <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                             <span class="btn-inner--text">{{__('Add item')}}</span>
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-2 card-meta d-inline-flex align-items-center">
                                     <button class="btn btn-primary btn-xs" type="submit" id="checklist_submit">
-                                        <i class="ti ti-plus "></i>
+                                        <i class="fa fa-plus "></i>
                                     </button>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="col-6 text-end">
                         <a href="#" class="btn btn-xs btn-secondary btn-icon rounded-pill" data-toggle="collapse" data-target="#add_file">
-                            <span class="btn-inner--icon"><i class="ti ti-plus"></i></span>
+                            <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                             <span class="btn-inner--text">{{__('Add item')}}</span>
                         </a>
                     </div>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-2 card-meta d-inline-flex align-items-center">
                                 <button class="btn btn-primary btn-xs" type="submit" id="file_submit1234">
-                                    <i class="ti ti-plus "></i>
+                                    <i class="fa fa-plus "></i>
                                 </button>
                             </div>
                         </div>

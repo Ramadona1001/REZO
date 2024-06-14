@@ -1,5 +1,5 @@
 <div class="modal-body task-id" id="{{$task->id}}">
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <h5> {{__('Task Detail')}}</h5>
             <div class="row  mt-4">
@@ -45,7 +45,7 @@
 
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <div class="row mb-4 align-items-center">
                 <div class="col-6">
@@ -54,7 +54,7 @@
                 <div class="col-6 ">
                     <div class="float-end">
                         <a data-bs-toggle="collapse" href="#form-checklist" role="button" aria-expanded="false" aria-controls="form-checklist" data-bs-toggle="tooltip" title="{{__('Add item')}}" class="btn btn-sm btn-primary">
-                            <i class="ti ti-plus"></i>
+                            <i class="fa fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-2 card-meta d-inline-flex align-items-center">
                                 <button class="btn btn-sm btn-primary" type="button" id="checklist_submit" data-bs-toggle="tooltip" title="{{__('Create')}}">
-                                    <i class="ti ti-check"></i>
+                                    <i class="fa fa-check"></i>
                                 </button>
                             </div>
                         </div>
@@ -86,11 +86,9 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <div class="action-btn bg-danger ms-2">
-                                    <a href="#" class="mx-3 btn btn-sm  align-items-center delete-checklist" data-url="{{ route('checklist.destroy',[$task->project_id,$checklist->id]) }}">
-                                        <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="ti ti-trash text-white"></i>
-                                    </a>
-                                </div>
+                                <a href="#" class="mx-3 btn-danger btn btn-sm  align-items-center delete-checklist" data-url="{{ route('checklist.destroy',[$task->project_id,$checklist->id]) }}">
+                                    <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="fa fa-trash text-white"></i>
+                                </a>
 
                             </div>
                         </div>
@@ -99,7 +97,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <div class="row mb-4 align-items-center">
                 <div class="col-6">
@@ -108,7 +106,7 @@
                 <div class="col-6 ">
                     <div class="float-end">
                         <a data-bs-toggle="collapse" href="#add_file" role="button" aria-expanded="false" aria-controls="add_file" data-bs-toggle="tooltip" title="{{__('Add attachment')}}" class="btn btn-sm btn-primary">
-                            <i class="ti ti-plus"></i>
+                            <i class="fa fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -125,7 +123,7 @@
                             <div class="col-2 card-meta d-inline-flex align-items-center">
                                 <button class="btn btn-sm btn-primary" type="button" id="file_attachment_submit"
                                         data-action="{{ route('comment.store.file',[$task->project_id,$task->id]) }}" data-bs-toggle="tooltip" title="{{__('Create')}}">
-                                    <i class="ti ti-check"></i>
+                                    <i class="fa fa-check"></i>
                                 </button>
                             </div>
                             <img id="blah" src="" class="img_preview" />
@@ -145,17 +143,14 @@
                                         <p class="card-text small text-muted">{{ $file->file_size }}</p>
                                     </div>
                                     <div class="col-auto actions">
-                                        <div class="action-btn bg-secondary ms-2">
-                                            <a href="{{asset(Storage::url('tasks/'.$file->file))}}" download class="mx-3 btn btn-sm  align-items-center" role="button">
-                                                <i class="ti ti-download text-white"></i>
-                                            </a>
-                                        </div>
+                                        <a href="{{asset(Storage::url('tasks/'.$file->file))}}" download class="btn-secondary mx-3 btn btn-sm  align-items-center" role="button">
+                                            <i class="fa fa-download text-white"></i>
+                                        </a>
                                         @auth('web')
-                                            <div class="action-btn bg-danger ms-2">
-                                                <a href="#" class="mx-3 btn btn-sm  align-items-center delete-comment-file" data-url="{{ route('comment.destroy.file',[$task->project_id,$task->id,$file->id]) }}">
-                                                    <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="ti ti-trash text-white"></i>
-                                                </a>
-                                            </div>
+                                        <a href="#" class="mx-3 btn btn-sm btn-danger align-items-center delete-comment-file" data-url="{{ route('comment.destroy.file',[$task->project_id,$task->id,$file->id]) }}">
+                                            <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="fa fa-trash text-white"></i>
+                                        </a>
+                                        
                                         @endauth
                                     </div>
                                 </div>
@@ -166,7 +161,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <div class="row mb-4 align-items-center">
                 <div class="col-6">
@@ -180,11 +175,6 @@
 
                     <div class="list-group-item px-0">
                         <div class="row align-items-center">
-                            <div class="col-auto">
-                                <a href="#" class="avatar avatar-sm ms-2">
-                                    <img data-toggle="tooltip" data-original-title="{{(!empty($user)?$user->name:'')}}" @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif title="{{ $user->name }}" class="wid-40 rounded-circle ml-3">
-                                </a>
-                            </div>
                             <div class="col ml-n2">
                                 <span class="text-dark text-sm">{{ __($activity->log_type) }}</span>
                                 <a class="d-block h6 text-sm font-weight-light mb-0">{!! $activity->getRemark() !!}</a>
@@ -196,24 +186,13 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
 
         <div class="card-body">
             <div class="row ">
                 <div class="col-6">
                     <h5 class="mb-3">{{__('Comments')}}</h5>
                 </div>
-                @php
-                    $plan= \App\Models\Utility::getChatGPTSettings();
-                @endphp
-                @if($plan->chatgpt == 1)
-                    <div class="col-6 text-end">
-                        <a href="#" data-size="md" class="btn btn-primary btn-icon btn-sm mb-3 me-2" data-ajax-popup-over="true" id="grammarCheck" data-url="{{ route('grammar',['grammar']) }}"
-                           data-bs-placement="top" data-title="{{ __('Grammar check with AI') }}">
-                            <i class="ti ti-rotate"></i> <span>{{__('Grammar check with AI')}}</span>
-                        </a>
-                    </div>
-                @endif
             </div>
             @if(empty($task->comments))
                 <hr></hr>
@@ -225,21 +204,14 @@
                     @php $user = \App\Models\User::find($comment->user_id); @endphp
                     <div class="list-group-item px-0 mb-1">
                         <div class="row align-items-center">
-                            <div class="col-auto">
-                                <a href="#" class="avatar avatar-sm rounded-circle ms-2">
-                                    <img data-original-title="{{(!empty($user)?$user->name:'')}}" @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif title="{{ $comment->user->name }}" class="wid-40 rounded-circle ml-3">
-                                </a>
-                            </div>
                             <div class="col ml-n2">
                                 <p class="d-block h6 text-sm font-weight-light mb-0 text-break">{{ $comment->comment }}</p>
                                 <small class="d-block">{{$comment->created_at->diffForHumans()}}</small>
                             </div>
                             <div class="col-auto">
-                                <div class="action-btn bg-danger me-2">
-                                    <a href="#" class="mx-3 btn btn-sm  align-items-center delete-comment" data-url="{{ route('comment.destroy',[$task->project_id,$task->id,$comment->id]) }}">
-                                        <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="ti ti-trash text-white"></i>
-                                    </a>
-                                </div>
+                                <a href="#" class="mx-3 btn btn-sm btn-danger align-items-center delete-comment" data-url="{{ route('comment.destroy',[$task->project_id,$task->id,$comment->id]) }}">
+                                    <i data-bs-toggle="tooltip" title="{{__('Delete')}}" class="fa fa-trash text-white"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -249,16 +221,13 @@
         <div class="card-footer">
 
             <div class="col-12 d-flex">
-                <div class="avatar me-3">
-                    <img data-original-title="{{(!empty(\Auth::user()) ? \Auth::user()->name:'')}}" @if(\Auth::user()->avatar) src="{{asset('/storage/uploads/avatar/'.\Auth::user()->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif title="{{ Auth::user()->name }}" class="wid-40 rounded-circle ml-3">
-                </div>
                 <div class="form-group mb-0 form-send w-100">
                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('task.comment.store',[$task->project_id,$task->id])}}">
                         <textarea rows="1" class="form-control grammer_textarea" name="comment" data-toggle="autosize" placeholder="{{__('Add a comment...')}}"></textarea>
                     </form>
                 </div>
 
-                <button id="comment_submit" class="btn btn-send"><i class="text-primary ti ti-brand-telegram"></i></button>
+                <button id="comment_submit" class="btn btn-send"><i class="text-primary fa fa-comments"></i></button>
 
             </div>
 

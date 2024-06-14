@@ -218,7 +218,7 @@
         @endcan
         @can('create bug report')
             <a href="#" data-size="lg" data-url="{{ route('task.bug.create',$project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Bug')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

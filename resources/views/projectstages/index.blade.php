@@ -39,7 +39,7 @@
 @section('action-btn')
     @can('create project stage')
         <div class="float-end">
-            <a href="#" data-url="{{ route('projectstages.create') }}" data-ajax-popup="true" data-title="{{__('Create Project Stage')}}" class="btn btn-xs btn-white btn-icon-only width-auto"><i class="ti ti-plus"></i> {{__('Create')}} </a>
+            <a href="#" data-url="{{ route('projectstages.create') }}" data-ajax-popup="true" data-title="{{__('Create Project Stage')}}" class="btn btn-xs btn-white btn-icon-only width-auto"><i class="fa fa-plus"></i> {{__('Create')}} </a>
         </div>
     @endcan
 @endsection

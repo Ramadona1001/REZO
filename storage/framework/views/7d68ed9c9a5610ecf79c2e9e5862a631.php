@@ -95,9 +95,6 @@
 
         <?php echo e(Form::close()); ?>
 
-
-        
-        
         <a href="#" data-size="lg" data-url="<?php echo e(route('leads.create')); ?>" data-ajax-popup="true"
             data-bs-toggle="tooltip" title="<?php echo e(__('Create New Lead')); ?>" data-title="<?php echo e(__('Create Lead')); ?>"
             class="btn btn-sm btn-primary">

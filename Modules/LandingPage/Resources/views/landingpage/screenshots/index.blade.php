@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 justify-content-end d-flex">
                                         <a data-size="lg" data-url="{{ route('screenshots_create') }}" data-ajax-popup="true"  data-bs-toggle="tooltip" data-title="{{__('Create ScreenShot')}}"  title="{{__('Create')}}"  class="btn btn-sm btn-primary">
-                                            <i class="ti ti-plus text-light"></i>
+                                            <i class="fa fa-plus text-light"></i>
                                         </a>
                                     </div>
                                 </div>

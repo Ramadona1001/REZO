@@ -391,7 +391,7 @@
                                 @can('create task')
                                     <div class="float-end">
                                         <a href="#" data-size="lg" data-url="{{ route('deals.tasks.create',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Task')}}" class="btn btn-sm btn-primary">
-                                            <i class="ti ti-plus"></i>
+                                            <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
                                 @endcan
@@ -465,7 +465,7 @@
 
                                             <div class="float-end">
                                                 <a data-size="md" data-url="{{ route('deals.users.edit',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add User')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus"></i>
+                                                    <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -517,7 +517,7 @@
 
                                             <div class="float-end">
                                                 <a  data-size="md" data-url="{{ route('deals.products.edit',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Product')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus"></i>
+                                                    <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -573,7 +573,7 @@
 
                                             <div class="float-end">
                                                 <a  data-size="md" data-url="{{ route('deals.sources.edit',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Source')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus"></i>
+                                                    <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -617,7 +617,7 @@
                                             @can('create deal email')
                                             <div class="float-end">
                                                 <a  data-size="lg" data-url="{{ route('deals.emails.create',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create Email')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus"></i>
+                                                    <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
                                         @endcan
@@ -666,7 +666,7 @@
 
                                             <div class="float-end">
                                                 <a data-size="lg" data-url="{{ route('deals.discussions.create',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Message')}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-plus"></i>
+                                                    <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -752,7 +752,7 @@
                                 @can('create deal call')
                                 <div class="float-end">
                                     <a  data-size="lg" data-url="{{ route('deals.calls.create',$deal->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Add Call')}}" class="btn btn-sm btn-primary">
-                                        <i class="ti ti-plus"></i>
+                                        <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
                                 @endcan

@@ -643,27 +643,7 @@ function checkInternet(state, selector) {
  * Get contacts
  *-------------------------------------------------------------
  */
-function getContacts() {
-    $('.listOfContacts').html(listItemLoading(4));
-    $.ajax({
-        url: url + '/getContacts',
-        method: 'POST',
-        data: {'_token': access_token, 'messenger_id': messenger.split('_')[1]},
-        dataType: 'JSON',
-        success: (data) => {
-            $('.listOfContacts').html('');
-            $('.listOfContacts').html(data.contacts);
 
-            $('.all_members').html('');
-            $('.all_members').html(data.allUsers);
-            // update data-action required with [responsive design]
-            cssMediaQueries();
-        },
-        error: () => {
-            console.error('Server error, check your response');
-        }
-    });
-}
 
 /**
  *-------------------------------------------------------------
@@ -724,24 +704,7 @@ function star(user_id) {
  * Get favorite list
  *-------------------------------------------------------------
  */
-function getFavoritesList() {
-    $('.messenger-favorites').html(avatarLoading(4));
-    $.ajax({
-        url: url + '/favorites',
-        method: 'POST',
-        data: {'_token': access_token},
-        dataType: 'JSON',
-        success: (data) => {
-            $('.messenger-favorites').html('');
-            $('.messenger-favorites').html(data.favorites);
-            // update data-action required with [responsive design]
-            cssMediaQueries();
-        },
-        error: () => {
-            console.error('Server error, check your response');
-        }
-    });
-}
+
 
 /**
  *-------------------------------------------------------------
@@ -924,10 +887,10 @@ function setActiveStatus(status, user_id) {
  */
 $(document).ready(function () {
     // get contacts list
-    getContacts();
+    // getContacts();
 
     // get contacts list
-    getFavoritesList();
+    // getFavoritesList();
 
     // Clear typing timeout
     clearTimeout(typingTimeout);

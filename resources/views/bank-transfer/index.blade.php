@@ -15,7 +15,7 @@
         {{--        </a>--}}
         @can('create bank transfer')
             <a href="#" data-url="{{ route('bank-transfer.create') }}" data-ajax-popup="true" data-title="{{__('Create Bank-Transfer')}}" data-bs-toggle="tooltip" title="{{__('Create')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         @endcan
     </div>

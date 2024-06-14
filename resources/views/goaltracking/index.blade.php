@@ -29,7 +29,7 @@
     <div class="float-end">
     @can('create goal tracking')
        <a href="#" data-size="lg" data-url="{{ route('goaltracking.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create New Goal Tracking')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
         @endcan
     </div>

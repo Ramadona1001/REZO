@@ -13,7 +13,7 @@
     <div class="float-end">
         @can('create loan option')
             <a href="#" data-url="{{ route('loanoption.create') }}" data-ajax-popup="true" data-title="{{__('Create New Loan Option')}}" data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
 
         @endcan

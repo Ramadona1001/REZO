@@ -7,6 +7,8 @@ use App\Models\ExperienceCertificate;
 use App\Models\GenerateOfferLetter;
 use App\Models\JoiningLetter;
 use App\Models\NOC;
+use App\Models\Plan;
+use App\Models\PlanRequest;
 use App\Models\User;
 use  App\Models\Utility;
 use Auth;
@@ -25,7 +27,7 @@ class RegisteredUserController extends Controller
      * @return \Illuminate\View\View
      */
 
-  public function __construct()
+    public function __construct()
     {
         $this->middleware('guest');
     }
@@ -49,31 +51,43 @@ class RegisteredUserController extends Controller
         //ReCpatcha
         $settings = Utility::settings();
         //ReCpatcha
-        if(isset($settings['recaptcha_module']) && $settings['recaptcha_module'] == 'on')
-        {
+        if (isset($settings['recaptcha_module']) && $settings['recaptcha_module'] == 'on') {
             $validation['g-recaptcha-response'] = 'required|captcha';
-        }else{
+        } else {
             $validation = [];
         }
         $this->validate($request, $validation);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'string',
-                         'min:8','confirmed', Rules\Password::defaults()],
+            'password' => [
+                'required', 'string',
+                'min:8', 'confirmed', Rules\Password::defaults()
+            ],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-             'type' => 'company',
-             'default_pipeline' => 1,
-              'plan' => 1,
-              'lang' => Utility::getValByName('default_language'),
-               'avatar' => '',
-               'created_by' => 1,
+            'type' => 'company',
+            'default_pipeline' => 1,
+            'requested_plan' => ($request->plan_id) ? $request->plan_id : 1,
+            'plan' => 1,
+            'lang' => Utility::getValByName('default_language'),
+            'avatar' => '',
+            'created_by' => 1,
         ]);
+
+        if (isset($request->plan_id)) {
+            PlanRequest::create([
+                'user_id' =>$user->id,
+                'plan_id' =>$request->plan_id,
+                'duration' =>'monthly'
+            ]);
+        }
+        
+
         Auth::login($user);
 
         $settings = Utility::settings();
@@ -81,9 +95,9 @@ class RegisteredUserController extends Controller
         if ($settings['email_verification'] == 'on') {
             try {
 
-                
+
                 Utility::smtpDetail(1);
-                
+
                 event(new Registered($user));
                 $role_r = Role::findByName('company');
                 $user->assignRole($role_r);
@@ -107,14 +121,12 @@ class RegisteredUserController extends Controller
                 ExperienceCertificate::defaultExpCertificatRegister($user->id);
                 JoiningLetter::defaultJoiningLetterRegister($user->id);
                 NOC::defaultNocCertificateRegister($user->id);
-
             } catch (\Exception $e) {
 
                 $user->delete();
                 return redirect()->back()->with('status', __('Email SMTP settings does not configure so please contact to your site admin.'));
             }
             return redirect(RouteServiceProvider::HOME);
-
         } else {
             $user->email_verified_at = date('h:i:s');
             $user->save();
@@ -144,31 +156,31 @@ class RegisteredUserController extends Controller
 
             return redirect(RouteServiceProvider::HOME);
         }
-
     }
 
-    public function showRegistrationForm($lang = '')
+    public function showRegistrationForm($lang = '', $plan = null)
     {
 
         $settings = Utility::settings();
 
-        if($settings['enable_signup'] == 'on')
-        {
+        if ($settings['enable_signup'] == 'on') {
             $langList = Utility::languages()->toArray();
             $lang = array_key_exists($lang, $langList) ? $lang : 'en';
-            
-            if($lang == '')
-            {
+
+            if ($lang == '') {
                 $lang = Utility::getValByName('default_language');
             }
             \App::setLocale($lang);
 
-            return view('auth.register', compact('lang'));
-        }
-        else
-        {
+            if ($plan != null) {
+                $get_plan = Plan::find($plan);
+            } else {
+                $get_plan = null;
+            }
+
+            return view('auth.register', compact('lang', 'get_plan'));
+        } else {
             return \Redirect::to('login');
         }
     }
-
 }

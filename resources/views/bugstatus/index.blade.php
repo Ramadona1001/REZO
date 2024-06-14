@@ -42,7 +42,7 @@
     @can('create bug status')
         <div class="float-end">
             <a href="#" data-url="{{ route('bugstatus.create') }}"  data-bs-toggle="tooltip" title="{{__('Create')}}" class="btn btn-sm btn-primary" data-ajax-popup="true" data-title="{{__('Create Bug Stage')}}">
-                <i class="ti ti-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         </div>
     @endcan

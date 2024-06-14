@@ -78,7 +78,7 @@
                         <div class="col-auto text-end add_usr" data-id="{{ $user->id }}">
                             <button type="button" class="btn btn-xs btn-animated btn-primary rounded-pill btn-animated-y mr-3">
                             <span class="btn-inner--visible">
-                              <i class="ti ti-plus" id="usr_icon_{{$user->id}}"></i>
+                              <i class="fa fa-plus" id="usr_icon_{{$user->id}}"></i>
                             </span>
                                 <span class="btn-inner--hidden" id="usr_txt_{{$user->id}}">{{__('Add')}}</span>
                             </button>

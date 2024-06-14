@@ -52,7 +52,7 @@ class SupplierController extends Controller
         if(\Auth::user()->can('manage supplier'))
         {
             $user    = \Auth::user();
-            $suppliers = Supplier::all();
+            $suppliers = Supplier::where('created_by',auth()->user()->id)->get();
 
             return view('suppliers.index', compact('suppliers'));
         }
@@ -117,6 +117,7 @@ class SupplierController extends Controller
                 'name' => $request->name,
                 'industry' => $request->industry,
                 'address' => $request->address,
+                'created_by' => auth()->user()->id,
             ]);
 
             for ($i=0; $i < count($request->contact_name); $i++) { 

@@ -10,7 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register/{lang?}', [RegisteredUserController::class, 'showRegistrationForm'])
+Route::get('/register/{lang?}/{plan?}', [RegisteredUserController::class, 'showRegistrationForm'])
                 ->middleware('guest')
                 ->name('register');
 

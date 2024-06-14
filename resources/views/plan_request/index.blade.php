@@ -27,10 +27,6 @@
                                 <tr>
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Plan Name')}}</th>
-                                    <th>{{__('Total Users')}}</th>
-                                    <th>{{__('Total Customers')}}</th>
-                                    <th>{{__('Total Vendors')}}</th>
-                                    <th>{{__('Total Clients')}}</th>
                                     <th>{{__('Duration')}}</th>
                                     <th>{{__('Date')}}</th>
                                     <th>{{__('Action')}}</th>
@@ -46,18 +42,6 @@
                                             <div class="font-style ">{{ $prequest->plan->name }}</div>
                                         </td>
                                         <td>
-                                            <div class="">{{ $prequest->plan->max_users }}</div>
-                                        </td>
-                                        <td>
-                                            <div class="">{{ $prequest->plan->max_customers }}</div>
-                                        </td>
-                                        <td>
-                                            <div class="">{{ $prequest->plan->max_venders }}</div>
-                                        </td>
-                                        <td>
-                                            <div class="">{{ $prequest->plan->max_clients }}</div>
-                                        </td>
-                                        <td>
                                             @if($prequest->duration == "year")
                                             <div class="font-style ">{{ __('Yearly') }}</div>
                                             @elseif($prequest->duration == "month")
@@ -70,10 +54,10 @@
                                         <td>
                                             <div>
                                                 <a href="{{route('response.request',[$prequest->id,1])}}" class="btn btn-success btn-sm">
-                                                    <i class="ti ti-check"></i>
+                                                    <i class="fa fa-check"></i>
                                                 </a>
                                                 <a href="{{route('response.request',[$prequest->id,0])}}" class="btn btn-danger btn-sm">
-                                                <i class="ti ti-x"></i>
+                                                <i class="fa fa-x"></i>
                                                 </a>
                                             </div>
                                         </td>

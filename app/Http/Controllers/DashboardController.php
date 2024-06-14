@@ -173,15 +173,15 @@ class DashboardController extends Controller
                     }
 
                     $data['statistics'] = [
-                        'Positions' => Position::count(),
-                        'Clients' => Client::count(),
-                        'Employees' => Employee::count(),
-                        'Departments' => Department::count(),
-                        'Sections' => Designation::count(),
-                        'Services' => Service::count(),
-                        'Projects' => Project::count(),
-                        'Freelancers' => Freelancer::count(),
-                        'Suppliers' => Supplier::count(),
+                        'Positions' => Position::where('created_by',auth()->user()->id)->count(),
+                        'Clients' => Client::where('created_by',auth()->user()->id)->count(),
+                        'Employees' => Employee::where('created_by',auth()->user()->id)->count(),
+                        'Departments' => Department::where('created_by',auth()->user()->id)->count(),
+                        'Sections' => Designation::where('created_by',auth()->user()->id)->count(),
+                        'Services' => Service::where('created_by',auth()->user()->id)->count(),
+                        'Projects' => Project::where('created_by',auth()->user()->id)->count(),
+                        'Freelancers' => Freelancer::where('created_by',auth()->user()->id)->count(),
+                        'Suppliers' => Supplier::where('created_by',auth()->user()->id)->count(),
                     ];
 
                     

@@ -73,7 +73,7 @@
                         <h4 class="h4 font-weight-400 float-left">{{__('Order Summary')}}</h4>
                         @can('Estimation Add Product')
                             <a href="#" class="btn btn-sm btn-white float-right add-small" data-url="{{ route('estimations.products.add',$estimation->id) }}" data-ajax-popup="true" data-title="{{__('Add Product')}}">
-                                <i class="ti ti-plus"></i> {{__('Add Product')}}
+                                <i class="fa fa-plus"></i> {{__('Add Product')}}
                             </a>
                         @endcan
                     </div>

@@ -70,6 +70,6 @@
 
 <div class="text-center d-flex align-items-center justify-content-center mt-4 mb-5 timelogged">
     <h5 class="f-w-900 me-2 mb-0">{{ __('Time Logged') }} :</h5>
-    <span class="p-2  f-w-900 rounded  bg-primary d-inline-block border border-dark">{{ $calculatedtotaltaskdatetime . __(' Hours') }}</span>
+    <span class="p-2  f-w-900 rounded  bg-primary d-inline-block border border-dark" style="color:white">{{ $calculatedtotaltaskdatetime . __(' Hours') }}</span>
 </div>
 

@@ -526,7 +526,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="theme-avtar bg-danger">
-                                            <i class="ti ti-check"></i>
+                                            <i class="fa fa-check"></i>
                                         </div>
                                         <div class="col text-end">
                                             <h6 class="text-muted mb-1">{{ __('Done Task') }}</h6>

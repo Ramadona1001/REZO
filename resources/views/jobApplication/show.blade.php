@@ -195,7 +195,7 @@
                         <div class="col text-end">
                             <div class="col-12 text-end">
                                 <a href="#" data-url="{{route('job.on.board.create', $jobApplication->id)}}" data-title="{{__('Add to Job OnBoard')}}" data-ajax-popup="true" class="btn-sm btn btn-primary">
-                                    <i class="ti ti-plus"></i>{{__('Add to Job OnBoard')}}</a>
+                                    <i class="fa fa-plus"></i>{{__('Add to Job OnBoard')}}</a>
                             </div>
 
                         </div>
@@ -280,7 +280,7 @@
                 <div class="col text-end">
                     @can('create interview schedule')
                         <a href="#" data-url="{{ route('interview-schedule.create',$jobApplication->id) }}" data-size="lg" class="btn-sm btn btn-primary" data-ajax-popup="true" data-title="{{__('Create New Interview Schedule')}}">
-                            <i class="ti ti-plus"></i> {{__('Create Interview Schedule')}}
+                            <i class="fa fa-plus"></i> {{__('Create Interview Schedule')}}
                         </a>
                     @endcan
                 </div>

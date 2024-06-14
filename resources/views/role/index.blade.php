@@ -12,7 +12,7 @@
     <div class="float-end">
         <a href="#" data-size="lg" data-url="{{ route('roles.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip"
             title="{{ __('Create New Role') }}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
     </div>
 @endsection
@@ -42,38 +42,35 @@
                                                         class="badge rounded p-2 m-1 px-3 bg-primary">{{ $permissionName }}</span>
                                                 @endforeach
                                             </td>
-                                            <td class="Action">
-                                                <span>
-                                                    @can('edit role')
-                                                        <div class="action-btn bg-info ms-2">
-                                                            <a href="#"
-                                                                class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                                data-url="{{ route('roles.edit', $role->id) }}"
-                                                                data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip"
-                                                                title="{{ __('Edit') }}"
-                                                                data-title="{{ __('Role Edit') }}">
-                                                                <i class="ti ti-pencil text-white"></i>
-                                                            </a>
-                                                        </div>
-                                                    @endcan
-
-                                                    @if ($role->name != 'Employee')
-                                                        @can('delete role')
-                                                            <div class="action-btn bg-danger ms-2">
-                                                                {!! Form::open([
-                                                                    'method' => 'DELETE',
-                                                                    'route' => ['roles.destroy', $role->id],
-                                                                    'id' => 'delete-form-' . $role->id,
-                                                                ]) !!}
-                                                                <a href="#"
-                                                                    class="mx-3 btn btn-sm  align-items-center bs-pass-para"
-                                                                    data-bs-toggle="tooltip" title="{{ __('Delete') }}"><i
-                                                                        class="ti ti-trash text-white"></i></a>
-                                                                {!! Form::close() !!}
-                                                            </div>
-                                                        @endcan
+                                            <td class="Action d-flex gap-3">
+                                                @can('edit role')
+                                                    @if ($role->name != 'employee' && $role->name != 'super admin')
+                                                        <a href="#"
+                                                            class="btn btn-primary d-inline-flex align-items-center"
+                                                            data-url="{{ route('roles.edit', $role->id) }}"
+                                                            data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip"
+                                                            title="{{ __('Edit') }}" data-title="{{ __('Role Edit') }}">
+                                                            <i class="fa fa-pencil text-white"></i>
+                                                        </a>
                                                     @endif
-                                                </span>
+                                                @endcan
+
+                                                @if ($role->name != 'Employee')
+                                                    @can('delete role')
+                                                        @if ($role->name != 'employee' && $role->name != 'super admin')
+                                                            {!! Form::open([
+                                                                'method' => 'DELETE',
+                                                                'route' => ['roles.destroy', $role->id],
+                                                                'id' => 'delete-form-' . $role->id,
+                                                            ]) !!}
+                                                            <a href="#"
+                                                                class="btn btn-danger  align-items-center bs-pass-para"
+                                                                data-bs-toggle="tooltip" title="{{ __('Delete') }}"><i
+                                                                    class="fa fa-trash text-white"></i></a>
+                                                            {!! Form::close() !!}
+                                                        @endif
+                                                    @endcan
+                                                @endif
                                             </td>
                                         </tr>
                                     @endif

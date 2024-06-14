@@ -252,7 +252,7 @@
                                 <div class="actions">
                                     <div data-toggle="collapse" data-target="#form-todo">
                                         <a class="action-item">
-                                            <i class="ti ti-plus"></i>
+                                            <i class="fa fa-plus"></i>
                                             <span class="d-none d-sm-inline-block">{{__('Add')}}</span>
                                         </a>
                                     </div>
@@ -271,7 +271,7 @@
                                             </div>
                                             <div class="col-2 card-meta d-inline-flex align-items-center">
                                                 <button class="btn btn-primary btn-xs" type="submit" id="todo_submit">
-                                                    <i class="ti ti-plus "></i>
+                                                    <i class="fa fa-plus "></i>
                                                 </button>
                                             </div>
                                         </div>

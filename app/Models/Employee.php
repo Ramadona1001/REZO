@@ -36,6 +36,11 @@ class Employee extends Model
         'created_by',
     ];
 
+    public function projects()
+    {
+        return $this->belongsToMany('App\Models\Project', 'project_employees', 'employee_id', 'project_id')->withTimestamps();
+    }
+
     public function documents()
     {
         return $this->hasMany('App\Models\EmployeeDocument', 'employee_id', 'employee_id')->get();

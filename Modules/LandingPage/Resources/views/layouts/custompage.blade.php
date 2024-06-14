@@ -1,8 +1,8 @@
 @php
     use App\Models\Utility;
     $settings = \Modules\LandingPage\Entities\LandingPageSetting::settings();
-    $logo  =  Utility::get_file('uploads/landing_page_image');
-    $sup_logo  =  Utility::get_file('uploads/logo');
+    $logo = Utility::get_file('uploads/landing_page_image');
+    $sup_logo = Utility::get_file('uploads/logo');
     $adminSettings = Utility::settingsById(1);
 
     $getseo= App\Models\Utility::getSeoSetting();
@@ -23,16 +23,16 @@
     }
 
 @endphp
+
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 
 <head>
-    <title>{{ env('APP_NAME') }}</title>
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-
-    <meta name="title" content="{{ $metatitle }}">
+  <!-- Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="title" content="{{ $metatitle }}">
     <meta name="description" content="{{ $metadesc }}">
 
     <!-- Open Graph / Facebook -->
@@ -50,289 +50,186 @@
     <meta property="twitter:description" content="{{ $metadesc }}">
     <meta property="twitter:image"
         content="{{ isset($meta_logo) && !empty(asset('storage/uploads/meta/' . $meta_logo)) ? asset('storage/uploads/meta/' . $meta_logo) : 'hrmgo.png' }}">
-
-    <!-- Favicon icon -->
-    {{-- <link rel="icon" href="{{ $sup_logo.'/'. $adminSettings['company_favicon'] }}" type="image/x-icon" /> --}}
-    <link rel="icon"
+  <!-- Page Title -->
+  <title>{{ env('APP_NAME') }}</title>
+  <!-- Favicon Icon -->
+  <link rel="icon"
         href="{{ $sup_logo . '/' . (isset($company_favicon) && !empty($company_favicon) ? $company_favicon : 'favicon.png') }}"
         type="image/x-icon" />
-
-    <link rel="stylesheet" type="text/css" href="{{ Module::asset('LandingPage:Resources/assets/new/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ Module::asset('LandingPage:Resources/assets/new/css/responsive.css') }}">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/owlCarousel.min.css" />
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/flaticon.css" />
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/animate.css" />
+  <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/css/style.css" />
 </head>
 
-<body class="no-scroll-y">
-
-    <div class="main-page-wrapper">
-
-        <section>
-            <div id="preloader">
-                <div id="ctn-preloader" class="ctn-preloader">
-                    <div class="animation-preloader">
-                        <div class="spinner"></div>
-                    </div>	
-                </div>
+<body class="st-blue-color">
+  <div id="st-preloader">
+    <div class="st-preloader-wave"></div>
+    <div class="st-preloader-wave"></div>
+    <div class="st-preloader-wave"></div>
+    <div class="st-preloader-wave"></div>
+    <div class="st-preloader-wave"></div>
+  </div>
+  <header class="st-header st-style1 st-sticky-menu st-color1">
+    <div class="st-main-header">
+      <div class="container">
+        <div class="st-main-header-in">
+          <div class="st-site-branding">
+            <a href="{{ url('/') }}" class="st-logo-link"><img style="width: 50px;" src="{{ $logo . '/' . $settings['site_logo'] . '?' . time() }}" alt="demo"></a>
+          </div>
+          <!-- For Site Title -->
+          <!-- <span class="st-site-title">
+            <a href="index.html">Logo</a>
+          </span> -->
+          <div class="st-nav-wrap st-fade-down">
+            <div class="st-nav-toggle st-style1">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
-        </section>
-
-        <div class="theme-main-menu theme-menu-one d-align-item">
-            <div class="logo"><a href="{{ url('/') }}"><img src="{{ $logo . '/' . $settings['site_logo'] . '?' . time() }}" alt=""></a></div>
-            <nav id="mega-menu-holder" class="navbar navbar-expand-lg">
-                <div  class="ml-auto nav-container">
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="flaticon-setup"></i>
-                    </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a href="{{ url('/') }}" class="nav-link" >{{ $settings['home_title'] }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/#features') }}" class="nav-link" >{{ $settings['feature_title'] }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/#plans') }}" class="nav-link" >{{ $settings['plan_title'] }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/#testimonials') }}" class="nav-link" >{{ $settings['testimonial_title'] }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/#faqs') }}" class="nav-link" >{{ $settings['faq_title'] }}</a>
-                            </li>
-
-                            @if (is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page'])))
-                            <li class="nav-item dropdown position-relative">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __("Pages") }}</a>
-                                <ul class="dropdown-menu">
-                                    @foreach (json_decode($settings['menubar_page']) as $key => $value)
-                                        @if (isset($value->header) && $value->header == 'on' && isset($value->template_name))
-                                        <li class="nav-item">
-                                            <a href="{{ $value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url }}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ $value->menubar_page_name }}</a>
-                                        </li>
-                                        @endif
-                                    @endforeach
-                                </ul> <!-- /.dropdown-menu -->
-                            </li>
+            <nav class="st-nav st-desktop-nav">
+              <ul class="st-nav-list onepage-nav">
+                <li class="smooth-scroll"><a href="{{ url('/') }}" class="nav-link" >{{ $settings['home_title'] }}</a></li>
+                <li><a class="smooth-scroll" href="{{ url('/#features') }}" class="nav-link" >{{ $settings['feature_title'] }}</a></li>
+                <li><a class="smooth-scroll" href="{{ url('/#plans') }}" class="nav-link" >{{ $settings['plan_title'] }}</a></li>
+                <li><a class="smooth-scroll" href="{{ url('/#testimonials') }}" class="nav-link" >{{ $settings['testimonial_title'] }}</a></li>
+                <li><a class="smooth-scroll" href="{{ url('/#faqs') }}" class="nav-link" >{{ $settings['faq_title'] }}</a></li>
+                <li><a class="smooth-scroll" href="#price" class="smooth-scroll">Price</a></li>
+                
+                @if (is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page'])))
+                <li class="st-has-children"><a href="#blog" class="smooth-scroll">{{ __("Pages") }}</a>
+                  <ul>
+                        @foreach (json_decode($settings['menubar_page']) as $key => $value)
+                            @if (isset($value->header) && $value->header == 'on' && isset($value->template_name))
+                                <li><a href='{{ $value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url }}'>{{ $value->menubar_page_name }}</a></li>
                             @endif
-                            <li class="login-button" style=" gap: 10px; display: flex; ">
-                                @if(!Auth::check())
-                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    <a href="{{ __('Register') }}">{{ __('Register') }}</a>
-                                @else
-                                    <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-                                @endif
-                            </li>
-                    </ul>
-                </div>
-                </div> <!-- /.container -->
-            </nav> <!-- /#mega-menu-holder -->
+                        @endforeach
+                  </ul>
+                </li>
+                @endif
+                @if(!Auth::check())
+                <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                @else
+                <li><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+                @endif
+              </ul>
+            </nav><!-- .st-nav -->
+          </div><!-- .st-nav-wrap -->
         </div>
+      </div>
+    </div>
+  </header>
 
-        <div class="solid-inner-banner">
-            <h2 class="page-title">{!! $page['menubar_page_name'] !!}</h2>
-            <ul class="page-breadcrumbs mb-5">
-                <li><a href="{{ url('/') }}">{{ $settings['home_title'] }}</a></li>
-                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                <li>{!! $page['menubar_page_name'] !!}</li>
-            </ul>
-        </div>
-
-        <div class="about-us-standard agency-style" style="padding-top: 0;padding-bottom: 100px ">
-            <div class="container">
-                <div class="demo-container-1100">
-                    <div class="row gutter-80">
-                        {!! $page['menubar_page_contant'] !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @if ($settings['testimonials_status'] == 'on')
-        <div class="sass-testimonial-section" id="testimonials">
-            <div class="container">
-                <div class="theme-title-one text-center hide-pr">
-                    <div class="icon-box hide-pr">
-                        <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/shape/bg-shape5.svg') }}" alt="" class="bg-shape">
-                        <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/icon/icon27.svg') }}" alt="" class="icon">
-                    </div>
-                    <h2 class="main-title">{!! $settings['testimonials_heading'] !!}</h2>
-                    <p>{!! $settings['testimonials_description'] !!}</p>
-                </div> <!-- /.theme-title-one -->
-
-                <div class="inner-container">
-                    <div class="main-content">
-                        <div class="agn-testimonial-slider">
-                            @if (is_array(json_decode($settings['testimonials'])) || is_object(json_decode($settings['testimonials'])))
-                                @foreach (json_decode($settings['testimonials']) as $key => $value)
-                                    <div class="item">
-                                        <p>{{ $value->testimonials_description }}</p>
-                                        <h6 class="name">{{ $value->testimonials_title }}</h6>
-                                        <span class="designation" style=" display: flex; justify-content: center; gap: 20px; margin-top: 20px; ">
-                                            @if (isset($value->testimonials_user_avtar))
-                                                <img src="{{ $logo . '/' . $value->testimonials_user_avtar }}" class="wid-40 rounded-circle me-3" style="width:50px;">
-                                            @endif
-                                            <span>
-                                                <b class="fw-bold d-block">{{ $value->testimonials_user }}</b>
-                                                {{ $value->testimonials_designation }}
-                                            </span>
-                                        </span>
-                                    </div> <!-- /.item -->
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div> <!-- /.inner-container -->
-            </div> <!-- /.container -->
-        </div>
-        @endif
-
-        @if ($settings['faq_status'] == 'on')
-        <div class="theme-title-one text-center hide-pr" style="margin-top:50px;" id="faqs">
-            <h2 class="main-title">{{ $settings['faq_title'] }}</h2>
-            <p>{!! $settings['faq_heading'] !!}</p>
-            <p>{!! $settings['faq_description'] !!}</p>
-        </div>
-        <div class="sass-faq-section">
-
-            <div class="section-shape-one"><img src="{{ Module::asset('LandingPage:Resources/assets/new/images/shape/shape-18.svg') }}" alt=""></div>
-            <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/shape/shape-26.svg') }}" alt="" class="section-shape-two">
-            <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/shape/shape-29.svg') }}" alt="" class="section-shape-three">
-            <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/shape/shape-30.svg') }}" alt="" class="section-shape-four">
-            <div class="container">
-               
-                <div class="faq-tab-wrapper">
-                    <div class="tab-content">
-                        <div id="payment" class="tab-pane fade show active">
-                            <div class="row">
-                                @if (is_array(json_decode($settings['faqs'], true)) || is_object(json_decode($settings['faqs'], true)))
-                                    @foreach (json_decode($settings['faqs'], true) as $key => $value)
-                                        <div class="col-12">
-                                            <div class="panel-group theme-accordion" id="accordion{{$key}}">
-                                                <div class="faq-panel">
-                                                    <div class="panel">
-                                                        <div class="panel-heading active-panel">
-                                                            <h6 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion{{$key}}" href="#collapse{{$key}}">{!! $value['faq_questions'] !!}</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div id="collapse{{$key}}" class="panel-collapse collapse">
-                                                            <div class="panel-body">
-                                                                <p>{!! $value['faq_answer'] !!}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-                            </div> <!-- /.row -->
-                        </div>
-                    </div> <!-- /.tab-content -->
-                </div> <!-- /.faq-tab-wrapper -->
-
-
-                <a href="#footer" class="down-button scroll-target"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            </div> <!-- /.container -->
-        </div>
-        @endif
-
-
-        <footer class="theme-footer-one" id="footer">
-            <div class="shape-one" data-aos="zoom-in-right"></div>
-            <img src="{{ Module::asset('LandingPage:Resources/assets/new/images/images/shape/shape-67.svg') }}" alt="" class="shape-two">
-            <div class="top-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-12 about-widget" data-aos="fade-up">
-                            <a href="{{ url('/') }}" class="logo"><img style="width:70px;" src="{{ $logo . '/' . $settings['site_logo'] . '?' . time() }}" alt=""></a>
-                            <p>{!! $settings['site_description'] !!}</p>
-                        </div> <!-- /.about-widget -->
-                        <div class="col-lg-4 col-lg-3 col-sm-6 col-12 footer-list" data-aos="fade-up">
-                            <h5 class="title">{{ __('Our Pages') }}</h5>
-                            <ul>
-                                @if (is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page'])))
-                                    @foreach (json_decode($settings['menubar_page']) as $key => $value)
-                                        @if (isset($value->footer) && $value->footer == 'on' && $value->header == 'off' && isset($value->template_name))
-                                            <li><a
-                                                    href="{{ $value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url }}">{{ $value->menubar_page_name }}</a>
-                                            </li>
-                                        @endif
-                                        @if (isset($value->footer) && $value->footer == 'on' && $value->header == 'on' && isset($value->template_name))
-                                            <li><a
-                                                    href="{{ $value->template_name == 'page_content' ? route('custom.page', $value->page_slug) : $value->page_url }}">{{ $value->menubar_page_name }}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div> <!-- /.footer-recent-post -->
-                        
-                        <div class="col-lg-4 col-lg-2 col-sm-6 col-12 footer-information" data-aos="fade-up">
-                            <h5 class="title">{!! $settings['joinus_heading'] !!}</h5>
-                            <p>{!! $settings['joinus_description'] !!}</p>
-                            @if ($settings['joinus_status'] == 'on')
-                                <div class="ftr-col ftr-subscribe">
-                                    <form method="post" action="{{ route('join_us_store') }}">
-                                        @csrf
-                                        <input type="text" name="email" placeholder="{{__('Type your email address')}}..." required class="form-control">
-                                        <button type="submit" class="btn btn-dark rounded-pill mt-3">{{ __('Join Us!') }}</button>
-                                    </form>
-                                </div>
-                            @endif
-                        </div>
-                    </div> <!-- /.row -->
-                </div> <!-- /.container -->
-            </div> <!-- /.top-footer -->
+  <div class="st-content">
+    <!-- Start Hero Slider -->
+    <div class="st-hero-slide st-style2 st-type1 st-flex" id="home">
+      <div class="container">
+        <div class="st-hero-text st-style1 st-color1">
+          <h1 class="st-hero-title">{{ $settings['home_offer_text'] }}</h1>
+          <div class="st-hero-subtitle" style="margin-bottom:10px;">
+            {{ $settings['home_heading'] }}
+          </div>
+          <div class="st-hero-subtitle" style="width: 50%;">
+            {{ $settings['home_description'] }}
+          </div>
             
-            <div class="container">
-                <div class="bottom-footer">
-                    <div class="clearfix">
-                        <p>&copy;{{ date(' Y') }}
-                            {{ App\Models\Utility::getValByName('footer_text') ? App\Models\Utility::getValByName('footer_text') : config('app.name', 'Resource Managment') }}</p>
-                        <ul>
-                            @include('landingpage::layouts.buttons')
-                        </ul>
-                    </div>
-                </div> <!-- /.bottom-footer -->
-            </div>
-        </footer>
-        
-        <button class="scroll-top tran3s">
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-        </button>
+          <div class="d-flex" style="gap:10px;">
+            @if ($settings['home_live_demo_link'])
+            <div class="st-btn-group st-style1">
+                <a href="{{ $settings['home_live_demo_link'] }}" class="st-btn st-style1 st-color1">{{ __('Live Demo') }}</a>
+              </div>
+            @endif
 
+            @if ($settings['home_buy_now_link'])
+            <div class="st-btn-group st-style1">
+                <a href="{{ $settings['home_buy_now_link'] }}" class="st-btn st-style1 st-color1">{{ __('Buy Now') }}</a>
+              </div>
+            @endif
+          </div>
+          
+          
+        </div>
+      </div>
+      <div class="st-hero-img">
+        <img src="{{ $logo . '/' . $settings['home_banner'] }}" alt="demo">
+      </div>
+      <div class="st-circla-animation">
+        <div class="st-circle st-circle-first"></div>
+        <div class="st-circle st-circle-second"></div>
+      </div>
+    </div>
+    <!-- End Hero Slider -->
+
+
+    <!-- Start About Section -->
+    <div class="st-about-wrap st-section-top" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="st-section-heading st-style1">
+              <h3>{!! $page['menubar_page_name'] !!}</h3>
+            </div>
+            <div class="st-about-text">
+                {!! $page['menubar_page_contant'] !!}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/jquery.2.2.3.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/popper.js/popper.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/mega-menu/assets/js/custom.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/aos-next/dist/aos.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/WOW-master/dist/wow.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/owl-carousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/jquery.appear.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/jquery.countTo.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/vendor/fancybox/dist/jquery.fancybox.min.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/js/lang.js') }}"></script>
-    <script src="{{ Module::asset('LandingPage:Resources/assets/new/js/theme.js') }}"></script>
+    
+    
+    <footer class="st-site-footer ">
+        <div class="st-main-footer text-center">
+          <div class="container">
+            <div class="st-footer-social">
+              <ul class="st-footer-social-btn st-flex st-mp0">
+                @include('landingpage::layouts.buttons')
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="st-copyright text-center">
+            <div class="st-copyright-text">{{ App\Models\Utility::getValByName('footer_text') ? App\Models\Utility::getValByName('footer_text') : config('app.name', 'Resource Managment') }}</div>
+        </div>
+      </footer>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+  </div>
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-    </script>
-
-
-@stack('custom-scripts')
-
+  <!-- Start Footer Seciton -->
+  
+  <!-- End Footer Seciton -->
+  <!-- Start Video Popup -->
+  <div class="st-video-popup">
+    <div class="st-video-popup-overlay"></div>
+    <div class="st-video-popup-content">
+      <div class="st-video-popup-layer"></div>
+      <div class="st-video-popup-container">
+        <div class="st-video-popup-align">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="about:blank"></iframe>
+          </div>
+        </div>
+        <div class="st-video-popup-close"></div>
+      </div>
+    </div>
+  </div>
+  <!-- End Video Popup -->
+  <!-- Scripts -->
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/mailchimp.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/owlCarousel.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/tamjid-counter.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/wow.min.js"></script>
+  <script src="{{ Module::asset('LandingPage:Resources/assets/new') }}/rtl/js/main.js"></script>
 </body>
 
 </html>

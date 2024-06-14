@@ -11,7 +11,7 @@
     @can('create interview schedule')
 
             <a href="#" data-url="{{ route('job.on.board.create',0)}}"  data-bs-toggle="tooltip" title="{{__('Create')}}" data-ajax-popup="true" class="btn btn-sm btn-primary" data-title="{{__('Create New Job OnBoard')}}">
-            <i class="ti ti-plus"></i>
+            <i class="fa fa-plus"></i>
         </a>
         @endcan
     </div>

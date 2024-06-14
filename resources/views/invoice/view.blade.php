@@ -253,7 +253,7 @@
                             <div class="row timeline-wrapper">
                                 <div class="col-md-6 col-lg-4 col-xl-4 create_invoice">
                                     <div class="timeline-icons"><span class="timeline-dots"></span>
-                                        <i class="ti ti-plus text-primary"></i>
+                                        <i class="fa fa-plus text-primary"></i>
                                     </div>
                                     <h6 class="text-primary my-3">{{ __('Create Invoice') }}</h6>
                                     <p class="text-muted text-sm mb-3"><i
